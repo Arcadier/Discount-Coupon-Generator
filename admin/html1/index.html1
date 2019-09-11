@@ -1,0 +1,539 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!-- begin header --> 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Discount Coupon</title>
+   
+    <link href="css/adminstyle.css" rel="stylesheet" type="text/css">
+    <link href="css/coupon.css" rel="stylesheet" type="text/css">
+</head>
+<!-- end header --> 
+        <div class="page-coupon">
+            <div class="page-header" id="no-sub-title">
+                <div class="pull-left">
+                    <div class="wrapper">
+                        <div class="page-icon"><i class="icon discount-icon"></i></div>
+                        <div class="page-title">
+                            <h1>Discount Coupon</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="page-content page-layout">
+                <div class="gutter-wrapper">
+                    <div class="panel-box">
+                        <div class="page-content-top private-setting-container-switch">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div><i class="icon icon-3x discount-icon-big"></i></div>
+                                    <div>
+                                        <p><b>Create coupon for your marketplace for special price discounts</b></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-right">
+                                    <a href="#" class="blue-btn al-middle" data-toggle="modal" data-target="#createcampaign">Create new campaign</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-box ">
+                        <div class="blsl-list-tblsec">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Campaign Name</th>
+                                        <th>Last Updated</th>
+                                        <th>Coupon Code</th>
+                                        
+                                        <th>Discount value</th>
+                                        <th>Redemption</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Marketplace opening discount</td>
+                                        <td>30/04/2019 13:00</td>
+                                        <td>OPENINGSPE</td>
+                                        
+                                        <td>5%</td>
+                                        <td>
+                                            <div class="onoffswitch yn">
+                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox switch-private-checkbox " id="myonoffswitch" checked="checked">
+                                                <label class="onoffswitch-label" for="myonoffswitch"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#createcampaign"><i class="icon icon-edit"></i></a>
+                                            <a href="#" class="btn_delete_act"><i class="icon icon-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>April special discount</td>
+                                        <td>30/04/2019 13:00</td>
+                                        <td>APRILPROMO</td>
+                                        
+                                        <td>10%</td>
+                                        <td>
+                                            <div class="onoffswitch yn">
+                                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox switch-private-checkbox " id="myonoffswitch1" checked="checked">
+                                                <label class="onoffswitch-label" for="myonoffswitch1"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#createcampaign"><i class="icon icon-edit"></i></a>
+                                            <a href="#" class="btn_delete_act"><i class="icon icon-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Limited Promo</td>
+                                        <td>30/04/2019 13:00</td>
+                                        <td>HSICE3891N</td>
+                                        
+                                        <td>5%</td>
+                                        <td>
+                                            <div class="limited-count">
+                                                <span>10</span> / <span>200</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#createcampaign"><i class="icon icon-edit"></i></a>
+                                            <a href="#" class="btn_delete_act"><i class="icon icon-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Limited Promo 2</td>
+                                        <td>30/04/2019 13:00</td>
+                                        <td>J20AM210CK</td>
+                                        
+                                        <td>10%</td>
+                                        <td>
+                                            <div class="limited-count">
+                                                <span>0</span> / <span>100</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#createcampaign"><i class="icon icon-edit"></i></a>
+                                            <a href="#" class="btn_delete_act"><i class="icon icon-delete"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="popup  popup-area popup-delete-confirm " id="DeleteCustomMethod">
+            <div class="wrapper"> <a href="javascript:;" class="close-popup"><img src="images/cross-icon.svg"></a>
+                <div class="content-area">
+                    <p>Are you sure you want to delete this?</p>
+                </div>
+                <div class="btn-area text-center smaller">
+                    <input type="button" value="Cancel" class="btn-black " id="popup_btncancel">
+                    <input id="popup_btnconfirm" type="button" value="Okay" class="my-btn btn-blue">
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="createcampaign" id="createcampaign">
+            <div class="modal-dialog modal-cm" role="document">
+                <div class="modal-content">
+                    <form class="needs-validation" action=" " method="post" id="createcampaign2" novalidate>
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><img src="images/cross-icon.svg"></button>
+                            <h4 class="modal-title" id="gridSystemModalLabel">Campaign Details</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-element">
+                                        <label>Campaign name</label>
+                                        <input type="text" name="" class="w-100 " required id = "campaign_name" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-element">
+                                        <label>Is this a limited coupon?</label>
+                                        <div class="onoffswitch ">
+                                            <input type="checkbox" name="limited" class="onoffswitch-checkbox switch-private-checkbox " id="limited">
+                                            <label class="onoffswitch-label" for="limited"> <span class="onoffswitch-inner"></span> <span class="onoffswitch-switch"></span> </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-element">
+                                        <label>Maximum Redemptions</label>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="text" name="" class="w-100" id="redeem" disabled="disabled">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="col-sm-6">
+                                    <div class="form-element">
+                                        <label>Coupon Code</label>
+                                        <input type="text" name="" class="w-100" id="coupon_code" maxlength="10 " required />
+                                    </div>
+                                </div>
+                                <div class="clearfix">   </div>
+                                <div class="col-sm-6">
+                                    <div class="form-element val-change">
+                                        <label>Discount value</label>
+                                        <input type="number" name="" id="d-val" class="w-100 "  min="0" max="100" id="discount_value" required />
+                                        <span>%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer text-left">
+                            <input type="submit" class="blue-btn" value="Save changes" id ="save_details">
+                        </div>
+                    </form>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <!-- End Start Seller popup-->
+        <div id="cover"></div>
+        <div id="coverdark"></div>
+
+        <!-- begin footer --> 
+        <script type="text/javascript" src="./scripts/package.js"></script>
+
+        <script type="text/javascript">
+        $('.delivery .onoffswitch input[type="checkbox"]').click(function() {
+            if ($(this).prop("checked") == true) {
+
+                $(".unit_options").show();
+                $(".unit_list_outer").show();
+            } else {
+                $(".unit_options").hide();
+                $(".unit_list_outer").hide();
+            }
+        });
+
+        function readURL1(input1) {
+            console.log(input1.files[0]);
+            if (input1.files && input1.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    console.log(e.target);
+                    var container = jQuery(".private-setting-marketplace-logo");
+                    container.html('');
+                    var pImage = "<img src=" + e.target.result + " alt='image'>";
+                    container.append(pImage);
+                    jQuery(".browse-control-logo [name=file_name1]").val(input1.files[0]['name']);
+                }
+                reader.readAsDataURL(input1.files[0]);
+            }
+        }
+
+        function readURL2(input) {
+            console.log(input.files[0]);
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    jQuery(".browse-control-background [name=file_name2]").val(input.files[0]['name']);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        jQuery("#myModal").on('shown.bs.modal', function() {
+            jQuery('#modaldialog').html5imageupload({});
+        });
+        /*fixed canvas size issue while edit*/
+        jQuery("#myModal").on('show.bs.modal', function() {
+            jQuery(window).resize('trigger');
+        });
+        jQuery('.model-img-crop a.download').attr('data-dismiss', 'modal');
+        jQuery('body').on('click', '.model-img-crop .download', function() {
+            var src = jQuery(this).attr('href');
+            var name = jQuery(this).attr('download');
+            jQuery(".browse-control input[name='file_name']").val(name);
+            jQuery(".cover-photo.bg-image-photo").html('');
+            jQuery(".cover-photo.bg-image-photo").append("<img src=" + src + " alt=" + name + ">");
+            jQuery("#myModal").modal("hide")
+            return false;
+        });
+        $(document).ready(function() {
+            $('#coupon_code').keypress(function(e) { var regex = new RegExp("^[a-zA-Z0-9]+$"); var str = String.fromCharCode(!e.charCode ? e.which : e.charCode); if (regex.test(str)) { return true; } e.preventDefault(); return false; });
+            $('.pr-text').keypress(function(e) { var regex = new RegExp("^[a-zA-Z0-9]+$"); var str = String.fromCharCode(!e.charCode ? e.which : e.charCode); if (regex.test(str)) { return true; } e.preventDefault(); return false; });
+            $("#btnSavePrivateSetting").click(function() {
+                $(".private-setting-body1").css("display", "none");
+                $(".private-setting-body2").css("display", "block");
+            });
+            $('.private-setting-click').click(function() {
+                $(".private-setting-click.active").removeClass("active");
+                $(".private-setting-click span.set-tick-check").removeClass("set-tick-check");
+                $(this).addClass('active');
+                $(this).find("span").addClass("set-tick-check");
+            });
+            $(".btn-configure").click(function() {
+                $(".private-setting-body1").css("display", "block");
+                $(".private-setting-body2").css("display", "none");
+            });
+        });
+
+        function hide_image_popup() {
+            jQuery("#coverdark").fadeOut();
+            jQuery("#large_image_popup").fadeOut();
+        }
+        $('ul.layout-tabs li').click(function() {
+            var tab_id = $(this).attr('data-tab');
+            $('ul.layout-tabs li').removeClass('layout-current');
+            $('.tab-content').removeClass('current');
+            $(this).addClass('layout-current');
+            $("#" + tab_id).addClass('current');
+        });
+
+        jQuery("#no-more-tables").tablesorter({
+            headers: {
+
+                4: {
+
+                    sorter: 'dcurrency'
+
+                }
+
+            },
+
+        });
+
+        jQuery(window).bind('scroll', function() {
+
+            jQuery(".sidebar").getNiceScroll().resize();
+
+        });
+
+        jQuery(".mobi-header .navbar-toggle").click(function(e) {
+
+            e.preventDefault();
+
+            jQuery("body").toggleClass("sidebar-toggled");
+
+        });
+
+        jQuery(".navbar-back").click(function() {
+
+            jQuery(".mobi-header .navbar-toggle").trigger('click');
+
+        });
+
+        /*nice scroll */
+
+        jQuery(".sidebar").niceScroll({
+
+            cursorcolor: "#000",
+
+            cursorwidth: "6px",
+
+            cursorborderradius: "5px",
+
+            cursorborder: "1px solid transparent",
+
+            touchbehavior: true
+
+        });
+
+
+        jQuery(".sidebar .section-links li > a").click(function() {
+
+            jQuery(".sidebar .section-links li").removeClass('active');
+
+            jQuery(this).parents('li').addClass('active');
+
+        });
+
+        $(document).ready(function() {
+            jQuery('.btn_delete_act').click(function() {
+                jQuery(this).parents("tr").addClass("active");
+                jQuery('#DeleteCustomMethod').show();
+
+                jQuery('#cover').show();
+
+            });
+
+
+
+            jQuery('#popup_btnconfirm').click(function() {
+
+                jQuery('#DeleteCustomMethod').hide();
+                jQuery("tr.active").remove();
+                jQuery('#cover').hide();
+
+            });
+
+
+
+
+            jQuery('#popup_btncancel,.close-popup').click(function() {
+                jQuery("tr.active").removeClass("active");
+                jQuery('#DeleteCustomMethod').hide();
+
+                jQuery('#cover').hide();
+
+            });
+            var watermark = 'Members Only';
+            $('.txt-watermark').val(watermark).addClass('watermark');
+
+            $('.txt-watermark').blur(function() {
+                if ($(this).val().length == 0) {
+                    $(this).val(watermark).addClass('watermark');
+                }
+            });
+            $('.txt-watermark').focus(function() {
+                if ($(this).val() == watermark) {
+                    $(this).val('').removeClass('watermark');
+                }
+            });
+            var watermarklink = 'www.example.com';
+            $('.txt-watermark-link').val(watermarklink).addClass('watermark');
+
+            $('.txt-watermark-link').blur(function() {
+                if ($(this).val().length == 0) {
+                    $(this).val(watermarklink).addClass('txt-watermark-link');
+                }
+            });
+            $('.txt-watermark-link').focus(function() {
+                if ($(this).val() == watermarklink) {
+                    $(this).val('').removeClass('txt-watermark-link');
+                }
+            });
+
+        });
+        // Struip connect functions
+
+        function popupCoonectStrip_ok() {
+            jQuery("#cover").fadeOut();
+
+            jQuery("#connect-edit-btn").hide();
+            jQuery("#connect-save-btn").show();
+        }
+        // End stripe connect functions
+
+        // Set link stripe functions
+        function popupConfirm_close(closeid) {
+            jQuery("#cover").fadeOut();
+            jQuery("#" + closeid).fadeOut();
+        }
+
+        function popupConfirm_ok() {
+            jQuery("#cover").fadeOut();
+            jQuery("#link-stripe-account").fadeOut();
+
+            jQuery("#unit_force").prop("readonly", false);
+            jQuery("#edit-btn").hide();
+            jQuery("#save-btn").show();
+        }
+
+        function MakeUneditable() {
+            var e = false;
+            jQuery("#unit_force.required").each(function() {
+                var val = jQuery(this).val();
+                var attr = jQuery(this).attr('id');
+                if (jQuery.trim(val) == '') {
+                    e = true;
+                    jQuery(this).addClass('error-con');
+                }
+
+            });
+            if (!e) {
+                jQuery("#unit_force").prop("readonly", true);
+                jQuery("#save-btn").hide();
+                jQuery("#edit-btn").show();
+            }
+
+        }
+
+        function SaveConfirm() {
+            var e = false;
+            jQuery("#unit_force .required").each(function() {
+                var val = jQuery(this).val();
+                var attr = jQuery(this).attr('id');
+                if (jQuery.trim(val) == '') {
+                    e = true;
+                    jQuery(this).addClass('error-con');
+                }
+
+            });
+            if (!e) {
+                jQuery("#cover").fadeIn();
+                jQuery("#link-stripe-account").fadeIn();
+            }
+        }
+        // End set live key function
+        $(window).load(function() {
+                checklimit();
+            $("body").on("click", ".fancy-radio", function() {
+                    $(".val-change").find('input').val("");
+                if ($('#pg_fixed').is(':checked')) {
+                    $(".val-change").find("span").addClass("hide");
+                    
+                } else {
+                    $(".val-change").find("span").removeClass("hide");
+                    
+                }
+            });
+
+            $(".val-change").find('input').on('input', function () {
+                
+                        var value = $(this).val();
+                        
+                        if ((value !== '') && (value.indexOf('.') === -1)) {
+                            
+                            $(this).val(Math.max(Math.min(value, 100), -100));
+                        }
+                    
+                });
+                    
+
+                
+            $("#limited").on("click", function() {
+                checklimit();
+            });
+
+
+
+        });
+        function checklimit(){
+            if ($("#limited").prop("checked") == false) {
+                $("#redeem").attr("disabled", "disabled");
+                $("#coupon_code").removeAttr("disabled");
+
+            } else {
+                $("#redeem").removeAttr("disabled");
+                $("#coupon_code").attr("disabled", "disabled");
+            }
+        }
+        </script>
+        <script type="text/javascript" src="http://bootstrap.arcadier.com/adminportal/images/custom-nicescroll.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+        <script type="text/javascript">
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+        </script>
+         <!-- end footer --> 
+</body>
+
+</html>

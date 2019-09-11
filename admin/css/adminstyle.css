@@ -1,0 +1,14 @@
+.delivery-icon {background-image: url(../images/icons/delivery.svg); width: 30px; background-repeat: no-repeat;}
+.delivery-icon-big {background-image: url(../images/icons/delivery.svg); width: 40px; background-repeat: no-repeat;}
+/*template style start here*/
+.icon.icon-blank{border: 1px solid #c2c2c2;}
+.form-area{display: inline-block;width: 100%;padding: 25px;}
+.form-area .form-element {display: inline-block;width: 100%; margin-bottom: 15px;}
+.form-area .form-element label{display: inline-block;width: 100%;font-size: 14px;  font-weight: 600;  font-style: normal;  font-stretch: normal;  line-height: normal;  letter-spacing: normal;  color: #494949;}
+.form-area .form-element .txt{  width: 386px;  height: 40px; border:1px solid #979797;}
+.btn-area .btn-blue {    background-color: #50c8ff; height: 40px; width: 150px; max-width: 100%; color: #fff; border: none; display: inline-block; text-align: center; line-height: 40px;}
+/*template style end here*/
+/*Delivery Option setting page*/
+.template-sidebar .section-links li.item-lng.active .sm-submenu.submenu-devapp { background: url('../images/white-dev-apps.svg')no-repeat;}
+.template-sidebar .section-links li.item-lng .sm-submenu.submenu-devapp { background: url('../images/black-dev-apps.svg')no-repeat;}
+/* End Delivery Option setting page*/

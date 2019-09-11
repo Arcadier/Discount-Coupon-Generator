@@ -1,0 +1,264 @@
+.discount-icon , .discount-icon-big {
+    background-image: url(../images/discount.svg)
+}
+.al-middle {
+	vertical-align: middle;
+	margin-top: 10px;
+}
+.page-coupon .blue-btn, .page-coupon  .blue-btn:hover  {
+	font-size: 14px;
+}
+.page-coupon .blsl-list-tblsec table thead th {
+    padding: 0px 15px;
+    font-size: 14px;
+    color: #fff;
+}
+.page-coupon .blsl-list-tblsec table tbody td {
+    height: 55px;
+    padding: 15px;
+    font-size: 14px;
+    color: #4d4d4d;
+}
+.page-coupon .icon.icon-edit {
+    background-image: url(../images/edit_btn.svg);
+    height: 32px;
+    width: 32px;
+}
+.page-coupon .btn-black {
+    background-color: #000;
+    width: 130px;
+    margin-top: 10px;
+    border: 1px solid transparent;
+    display: inline-block;
+    height: 40px;
+    border-radius: 0;
+    margin-right: 10px;  
+}
+.popup.popup-delete-confirm {
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+    padding: 20px 15px 10px !important;
+
+}
+.btn-area .btn-blue {
+	display: inline-block;
+	width: 130px;
+	padding: 0;
+  border-radius: 0;
+  margin-left: 10px;
+}
+
+.modal-cm {
+	max-width: 515px;
+
+}
+.modal-cm .modal-content {
+	border-radius: 0;
+	padding: 20px 40px;
+}
+.modal-cm .modal-header  , .modal-cm .modal-footer{
+	border:0;
+}
+.modal-footer.text-left {
+	text-align: left !important;
+}
+.modal-cm .modal-header  h4 {
+  
+  font-size: 18px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4d4d4d;
+}
+.modal-cm .form-element {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.modal-cm .form-element label {
+	display: inline-block;
+	width: 100%;
+   font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4d4d4d;
+}
+
+.modal-cm .form-element .w-100 {
+	display: inline-block;
+	width: 100%;
+	height: 34px;
+  	border: solid 1px #979797;
+  	line-height: 34px;
+  	padding: 0 15px;
+}
+
+.page-coupon .pgfncyopt .fancy-radio input[type="radio"]:checked + label { background: url(../images/r-check.svg) no-repeat left center; }
+
+.page-coupon .pgfncyopt .fancy-radio input[type="radio"] + label , 
+
+.page-coupon .pgfncyopt .fancy-checkbox input[type="checkbox"] + label { background: url(../images/r-uncheck.svg) no-repeat left center;}
+
+.page-coupon .pgfncyopt .fancy-radio label , .page-coupon .pgfncyopt .fancy-checkbox label { height: 26px; padding-left: 36px;  display: inline-block; border:none; padding-top: 3px; width: 100%;}
+
+.page-coupon .pgfncyopt .fancy-radio label span, 
+
+.page-coupon .pgfncyopt .fancy-checkbox label span { display: inline-block; width: auto; min-height: inherit; vertical-align: inherit;}
+
+.page-coupon .pgfncyopt {display: inline-block; width: 100%; margin-top: 10px;}
+
+.page-coupon .pgfncyopt .fancy-radio {border:none; display: inherit;margin-bottom: 0; width: auto; vertical-align: middle;margin-right: unset; height: auto; border-radius: none;}
+
+.val-change {
+	position: relative;
+}
+.val-change > span {
+    position: absolute;
+    top: 25px;
+    right: -35px;
+    font-size: 16px; 
+}
+.close {opacity: 1;}
+
+#createcampaign input[type=radio]{
+	position: absolute;
+}
+.modal-cm .form-element .w-100:disabled {
+  background: #999;
+  opacity: 0.5;
+  border:1px solid #000;
+}
+.page-coupon .modal-cm .form-element  .pgfncyopt {
+	margin-top: 0;
+}
+/*---------------------------------------------------------------------------------front------------------------------------------------------*/
+.page-review .review-delivery-details span.review-info-detail-text span.review-service-sub-total del{
+  color:#999;
+}
+.coupon-code {
+  border-radius: 3px;
+  width: auto;
+  display: inline-block;
+  padding: 3px 40px 5px 10px;
+  border:1px solid   #00c8b2; 
+  color:#00c8b2 !important;
+
+  position: relative;
+  /* display: block; */
+}
+.coupon-code i {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  cursor: pointer;
+
+}
+span.coupon-msg {
+  margin-top: 3px;
+  display:block;
+  color: red;
+}
+.pr-text {
+    display: inline-block;
+    width: calc(100% - 170px);
+    border-radius: 0;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    text-transform: uppercase;
+    border: 1px solid #c9c9c9;
+    padding: 0 15px;
+    margin-bottom: 0px;
+    margin-top:5px;
+}
+.pr-text::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #c0c0c0;
+  opacity: 1;
+}
+.pr-text::-moz-placeholder { /* Firefox 19+ */
+  color: #c0c0c0;
+  opacity: 1;
+}
+.pr-text:-ms-input-placeholder { /* IE 10+ */
+  color: #c0c0c0;
+  opacity: 1;
+}
+.pr-text:-moz-placeholder { /* Firefox 18- */
+  color: #c0c0c0;
+  opacity: 1;
+}
+.apply-promo-btn {
+    cursor: pointer;
+    background: #00c8b2;
+    color: #fff;
+    font-size: 14px;
+    height: 35px;
+    word-spacing: 3px;
+    border-radius: 0;
+    float: right;
+    width: 150px;
+    text-align: center;
+    line-height: 35px;
+    margin-bottom: 15px;
+    margin-top:5px;
+    border: none;
+}
+/*.apply-promo-btn.disable{
+ background: #c0c0c0;
+}*/
+.coupon-cod{
+  border-radius: 3px;
+  border:1px solid #999;
+  width: auto !important;
+  padding: 3px;
+  line-height: 1;
+ }
+ .purhstdtls-delvry-subtotal > del {
+  color: #999;
+ }
+ .ordr-dtls-trans-info .ordr-dtls-buyer-infoind {
+    margin-bottom: 10px ;
+}
+.yn .onoffswitch-inner::before{
+  content: "ON"
+}
+.yn .onoffswitch-inner::after{
+  content: "OFF"
+}
+
+
+
+
+.w-100.is-invalid, .was-validated .w-100:invalid {
+
+    border-color: #dc3545;
+    
+}
+.item-detail-left .item-price-text, .item-box-bottom .item-price.offer {
+    color: #ff5a60;
+}
+
+.item-price del{
+  font-size: 12px;
+  margin-left: 5px;
+  color: #000;
+}
+.blsl-list-tblsec table tbody td:last-child {
+  width: 130px;
+}
+/* @media (max-width:1024px){
+  #promocode{
+      display:block;
+  }
+}
+@media (max-width:1024px){
+  #applybutton{
+      display:block;
+  }
+} */
