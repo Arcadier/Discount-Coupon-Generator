@@ -61,9 +61,17 @@ function discount_orderDetails() {
         var t_subtotal =  subtotal.replace(/[^\d.-]/g, '');
     
     //2. get the delivery fee
-  
+        
         var delivery = $('.price-cal p:contains("Delivery")').text();
-        var t_delivery = delivery.replace(/[^\d.-]/g, '');
+        if (delivery == '') {
+            var t_delivery = 0;
+            console.log('0 del ' + delivery);
+        }else {
+            console.log('del ' + delivery);
+            var t_delivery = delivery.replace(/[^\d.-]/g, '');
+           
+        }
+       
       
     //3. get the admin fee
         var adminfee = $('.price-cal p:contains("Order Admin Fee")').text();
@@ -78,6 +86,7 @@ function discount_orderDetails() {
     // parseFloat(t_adminfee) +
      var total =   parseFloat(coupondiscount);
      var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery);
+     console.log('Total ' + Total);
 
      waitForElement('.details-col .description h1',function(){
         var totalLabel = $('.description:contains("TOTAL ORDER PAYOUT") h1');
