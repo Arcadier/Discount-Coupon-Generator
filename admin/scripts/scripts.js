@@ -72,12 +72,12 @@ function discount_orderDetails() {
            
         }
        
-      
     //3. get the admin fee
         var adminfee = $('.price-cal p:contains("Order Admin Fee")').text();
         var t_adminfee = adminfee.replace(/[^\d.-]/g, '');
+        t_adminfee = t_adminfee.replace(/-/g, "");
         console.log(t_adminfee);
-      
+
     var promo = '<p id = "amount"> </p>';
     $('.price-cal').append(promo);
     $('#amount').text('- ' + $('#currencyCode').val() + formatter.format(coupondiscount));
@@ -85,7 +85,8 @@ function discount_orderDetails() {
     $('#amount').children('label').text(couponname);     
     // parseFloat(t_adminfee) +
      var total =   parseFloat(coupondiscount);
-     var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery);
+     console.log('coupon ' +  total);
+     var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee;
      console.log('Total ' + Total);
 
      waitForElement('.details-col .description h1',function(){

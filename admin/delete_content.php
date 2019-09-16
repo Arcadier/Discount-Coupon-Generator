@@ -10,7 +10,6 @@ $baseUrl = getMarketplaceBaseUrl();
 $admin_token = getAdminToken();
 $customFieldPrefix = getCustomFieldPrefix();
 
-error_log('Campaign id ' . $campaign_id);
 $coupon_details = array(array('Name' => 'CampaignId', 'Value' => $campaign_id));
 $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Coupon';
 $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $coupon_details);
