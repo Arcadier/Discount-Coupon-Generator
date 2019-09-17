@@ -9,8 +9,9 @@
 ### Pre-Installation requirements
 * A [Developer dashboard](https://dashboard.sandbox.arcadier.io/account/login)
   * If you do not have one, and wish to have one, sign up as a Plug-In Developer [here](http://form.arcadier.com/arcadier/plugin-developer)
+* A [sandbox marketplace](https://api.arcadier.com/sandbox-marketplace). :video_game:
 * Knowledge of how to upload source code to the dashboard => [Knowledge](https://api.arcadier.com/building-first-plug-in).
-* Unicorn poop :rainbow: :poop:
+* Unicorns :rainbow:
 * Love for coding :heart:
 
 ### Installation:
