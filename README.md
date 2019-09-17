@@ -1,5 +1,6 @@
 <h1> Discount coupon Generator</h1>
-<p align="center"><img src="https://bootstrap.arcadier.com/github/plug-in-icons/Discount.png" style="float: left;"></p>
+<p align="center"><img src="https://bootstrap.arcadier.com/github/plug-in-icons/Discount.png"></p>
+<p align="center">Create and reward your consumers with discount coupons to boost sales and build a loyal user base.</p>
 
 ### Who can manipulate this code?
 * Developers? (Yes)
