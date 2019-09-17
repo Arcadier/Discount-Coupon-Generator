@@ -1,4 +1,5 @@
-![](https://bootstrap.arcadier.com/github/plug-in-icons/Discount.png) **Discount Coupon Generator**
+<h1> Discount coupon Generator</h1>
+<p align="center"><img src="https://bootstrap.arcadier.com/github/plug-in-icons/Discount.png" style="float: left;"></p>
 
 ### Who can manipulate this code?
 * Developers? (Yes)
