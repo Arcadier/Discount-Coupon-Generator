@@ -9,12 +9,18 @@
 ### Pre-Installation requirements
 * A [Developer dashboard](https://dashboard.sandbox.arcadier.io/account/login)
   * If you do not have one, and wish to have one, sign up as a Plug-In Developer [here](http://form.arcadier.com/arcadier/plugin-developer)
+* Knowledge of how to upload source code to the dashboard => [Knowledge](https://api.arcadier.com/building-first-plug-in).
+* Unicorn poop :rainbow: :poop:
+* Love for coding :heart:
 
 ### Installation:
 * Download the repository
 * Extract `admin` and `user` folders
 * Compress `admin` and `user` together
 * Upload the resulting `.zip` file to your [developer dashboard](https://dashboard.sandbox.arcadier.io/account/login)
+* Access the `Admin Portal` of your [sandbox marketplace](https://api.arcadier.com/sandbox-marketplace).
+* Go to `Plug-Ins`.
+* Install the Plug-In
 
 ### Links
 * Refer to the [wiki](https://github.com/Arcadier/Discount-Coupon-Generator/wiki) or [Arcadier Website](https://support.arcadier.com/hc/en-us/articles/360030008454) for more information.
