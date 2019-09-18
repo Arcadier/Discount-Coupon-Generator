@@ -829,3 +829,18 @@ padding: 6px 12px;
    justify-content: center;
    border: none;
 }
+
+.btn-info-plug-in {
+  color: #50c8ff;
+  display: block;
+  height: 30px;
+  text-align: right;
+  width: 190px;
+  text-decoration: none;
+  font-weight: bold;
+  font-family: 'Open Sans';
+}
+
+.float {
+  float: right;
+}

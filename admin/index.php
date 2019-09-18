@@ -16,6 +16,12 @@
             </div>
             <div class="page-content page-layout">
                 <div class="gutter-wrapper">
+                <div class="page-topnav" style="height: 5px;">
+                    <div class="float">
+                        <a class="btn-info-plug-in" href="https://support.arcadier.com/hc/en-us/articles/360030008454" target="_blank" >How to use this Plug-In?</a>
+                    </div>
+                </div>
+
                     <div class="panel-box">
                         <div class="page-content-top private-setting-container-switch">
                             <div class="row">

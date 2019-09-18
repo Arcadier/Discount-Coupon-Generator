@@ -71,7 +71,6 @@ function discount_orderDetails() {
             var t_delivery = delivery.replace(/[^\d.-]/g, '');
            
         }
-       
     //3. get the admin fee
         var adminfee = $('.price-cal p:contains("Order Admin Fee")').text();
         var t_adminfee = adminfee.replace(/[^\d.-]/g, '');
