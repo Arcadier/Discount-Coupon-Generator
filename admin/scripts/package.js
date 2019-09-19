@@ -87,6 +87,12 @@ function getDiscountValue(){
 $('#coupon_code').blur(function() {
    ValidateCoupon();
   });
+//prevent spaces
+  $('#coupon_code').on("input", function () {
+    $(this).val($(this).val().replace(/ /g, ""));
+    $(this).val($(this).val().replace(/[^a-z0-9]/gi, ''));
+
+});
 
   function ValidateCoupon() {
     var couponinput = $('#coupon_code').val();
