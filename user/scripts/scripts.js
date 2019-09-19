@@ -23,6 +23,7 @@ var orderguidcheckout;
 var orderId;
 var subtotal_del2;
 var invoiceStatus;
+var bulkdel;
 
 //order history -BUYER
 function getDiscountValue(){
@@ -409,14 +410,25 @@ $(document).ready(function() {
                         coup =  couponvalue.replace(/[^\d.-]/g, '')
                         
                     }
-                    subtotal_del4=  $('.l_box p .sub-total').text();
+                   // console.log('coup ' + couponvalue);
+                    subtotal_del2 =  $('.l_box p .sub-total').text();
+
+                    subtotal_del2 =  subtotal_del2.replace(/[^\d.-]/g, '');
+                    // subtotal_del2 = parseFloat(subtotal_del2);
+                    //console.log('subtotal del 2 ' + subtotal_del2);
+                    // console.log('subdel4 ' + subtotal_del4);
                     deliveryCharge =  $('.l_box p .delivery-costs').text();
-                    subtotal_del2 = parseFloat(subtotal_del2);
+
+                    subtotal_del2 = parseFloat(subtotal_del2).toFixed(2);;
+                    //console.log('subtotal del 2 ' + subtotal_del2);
                     deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
                     deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
+                    //console.log('del charge '  + deliveryCharge);
                     
                     totalwithcoupon = subtotal_del2 - coup;
+                   // console.log('total with coup ' + totalwithcoupon);
                     totalwithDelivery = parseFloat(totalwithcoupon) + parseFloat(deliveryCharge);
+                   // console.log('totalwdel ' + totalwithDelivery);
                     $('#currencySym').text('-' + mpCurrencycode);
                     //total - coupon discount
                     $('#price_amt').text(couponvalue);
@@ -569,18 +581,35 @@ function showPromoCodeSpacetime(){
     //1.get the current subtotal
     currentSubtotal = $('.checkout-itm-tprice:first').text();
     deliveryCharge =  $('.checkout-itm-total-sec .checkout-total-line1:nth-child(2) .checkout-itm-tprice').text();
+    console.log('del charge ' + deliveryCharge);
+
+    bulkdel = $('.checkout-itm-total-sec .checkout-total-line1:nth-child(3) .checkout-itm-tprice').text();
+    console.log('del charge bullk ' + bulkdel);
+
+
     //trim the characters then parse
     currentSubtotal1 = currentSubtotal.replace(/[^\d.-]/g, '');
+
     if (deliveryCharge == '') {
         deliveryCharge = 0;
     }else {
         deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
         deliveryCharge = parseFloat(deliveryCharge);
-        
     }
+
+    if (bulkdel == '') {
+        bulkdel = 0;
+    }else {
+        bulkdel =  bulkdel.replace(/[^\d.-]/g, '');
+        bulkdel = bulkdel.replace(/-/g, "");
+        bulkdel = parseFloat(bulkdel);
+    }
+    
     couponvalue =  parseFloat(calculatePercentage(discountVal,currentSubtotal1));
-    totalwithcoupon = currentSubtotal1 - couponvalue ;
-    totalwithDelivery = totalwithcoupon + deliveryCharge;
+    totalwithcoupon = currentSubtotal1 - couponvalue;
+    //console.log('totwithcoupon ' + totalwithcoupon)
+    totalwithDelivery = totalwithcoupon + deliveryCharge - bulkdel;
+
     $('#currencySym').text('-' + mpCurrencycode);
     //total - coupon discount
     $('#price_amt').text(couponvalue.toFixed(2));
@@ -613,11 +642,18 @@ function showPromoCodeDel2(){
     subtotal_del2=  $('.l_box p .sub-total').text();
     deliveryCharge =  $('.l_box p .delivery-costs').text();
     subtotal_del= subtotal_del2.replace(/[^\d.-]/g, '');
+
     deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
+    deliveryCharge = deliveryCharge.replace(/-/g, "");
+
     deliveryCharge = parseFloat(deliveryCharge);
+    console.log('del charge ' + deliveryCharge);
     couponvalue =  parseFloat(calculatePercentage(discountVal,subtotal_del));
+    console.log('coup ' + couponvalue);
     totalwithcoupon = subtotal_del - couponvalue ;
+    console.log('totalwcoupon '+ totalwithcoupon);
     totalwithDelivery = totalwithcoupon + deliveryCharge;
+    console.log('totalwithdel ' + totalwithDelivery);
     $('#currencySym').text('-' + mpCurrencycode);
     //total - coupon discount
     $('#price_amt').text(couponvalue.toFixed(2));
