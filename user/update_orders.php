@@ -7,6 +7,7 @@ include 'admin_token.php';
 $contentBodyJson = file_get_contents('php://input');
 $content = json_decode($contentBodyJson, true);
 $order_guid = $content['order_guid'];
+$discountTotal = $content['discountTotal'];
 $coupon_value = $content['discount_val'];
 $coupon_name = $content['coupon_code']; 
 $isLimited = $content['isLimited'];
@@ -39,7 +40,7 @@ error_log($paymentGateways['Total']);
 
 $subtotal = $paymentGateways['Total'];
 //4.apply the coupon
-$total_with_discount = $subtotal - $coupon_value;
+$total_with_discount = ($subtotal * $coupon_value) / 100;
 error_log($total_with_discount);
 
 //5. call update API
@@ -47,7 +48,7 @@ error_log($total_with_discount);
  $data = [
     [
         'ID' => $order_guid,
-        'DiscountAmount' =>  $coupon_value,
+        'DiscountAmount' =>  $total_with_discount,
     ],
 ];    
     error_log(json_encode($data));
@@ -78,7 +79,7 @@ $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exi
     if ($rec == '[]') {
         error_log('no, i dont exists,');
         $couponCode = '';
-        $order_details = array('OrderId' => $order_guid, 'CouponCode' => $coupon_name, 'DiscountValue' => $coupon_value);
+        $order_details = array('OrderId' => $order_guid, 'CouponCode' => $coupon_name, 'DiscountValue' => $discountTotal, 'DiscountPercentage' => $coupon_value);
         //3. Save the Coupon details along with the fetched campaign ID
         $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Orders/rows';
         $result =  callAPI("POST",$admin_token['access_token'], $url, $order_details);
@@ -89,7 +90,7 @@ $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exi
         // error_log(json_encode($result), 3, $log_file); 
     }else{
         //update 
-        $update_details = array('CouponCode' => $coupon_name, 'DiscountValue' => $coupon_value);
+        $update_details = array('CouponCode' => $coupon_name, 'DiscountValue' => $discountTotal, 'DiscountPercentage' => $coupon_value);
         $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Orders/rows/'. $curr_orderid;
         $result =  callAPI("PUT",$admin_token['access_token'], $url, $update_details);
     }

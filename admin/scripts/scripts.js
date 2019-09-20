@@ -28,7 +28,7 @@ function getDiscountValue(){
             if (discountDetails.result.length == 0) {
             }else{
                 couponname = discountDetails.result[0].CouponCode;
-                coupondiscount = discountDetails.result[0].DiscountValue;  
+                coupondiscount = discountDetails.result[0].DiscountPercentage;  
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.page-transaction-details').append(couponspan);
             }
@@ -53,16 +53,15 @@ const formatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2
   })
 
-function discount_orderDetails() {
+function discount_orderDetails(priceCal) {
     waitForElement('#couponhidden',function(){
     //1. get the current order sub total
-
-        var subtotal = $('.price-cal p:contains("Order Subtotal")').text();
+        var subtotal = priceCal.find('p:contains("Order Subtotal")').text();
         var t_subtotal =  subtotal.replace(/[^\d.-]/g, '');
     
     //2. get the delivery fee
         
-        var delivery = $('.price-cal p:contains("Delivery")').text();
+        var delivery = priceCal.find('p:contains("Delivery")').text();
         if (delivery == '') {
             var t_delivery = 0;
             console.log('0 del ' + delivery);
@@ -72,24 +71,26 @@ function discount_orderDetails() {
            
         }
     //3. get the admin fee
-        var adminfee = $('.price-cal p:contains("Order Admin Fee")').text();
+        var adminfee = priceCal.find('p:contains("Order Admin Fee")').text();
         var t_adminfee = adminfee.replace(/[^\d.-]/g, '');
         t_adminfee = t_adminfee.replace(/-/g, "");
         console.log(t_adminfee);
 
-    var promo = '<p id = "amount"> </p>';
-    $('.price-cal').append(promo);
-    $('#amount').text('- ' + $('#currencyCode').val() + formatter.format(coupondiscount));
-    $('#amount').prepend('<label id ="couponname"> </label>');
-    $('#amount').children('label').text(couponname);     
+    var promo = '<p class = "amount"> </p>';
+    priceCal.append(promo);
+    var total =   parseFloat(coupondiscount) * t_subtotal / 100;    
+    priceCal.find('.amount').text('- ' + $('#currencyCode').val() + formatter.format(total));
+    $('.amount').prepend('<label id ="couponname"> </label>');
+    $('.amount').children('label').text(couponname);     
     // parseFloat(t_adminfee) +
-     var total =   parseFloat(coupondiscount);
+   
      console.log('coupon ' +  total);
      var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee;
      console.log('Total ' + Total);
 
      waitForElement('.details-col .description h1',function(){
-        var totalLabel = $('.description:contains("TOTAL ORDER PAYOUT") h1');
+         var parents = priceCal.parent();
+        var totalLabel = parents.find('.description:contains("TOTAL ORDER PAYOUT") h1');
         var test =  formatter.format(Total); 
         totalLabel.text($('#currencyCode').val() + formatter.format(Total));
    });
@@ -100,8 +101,16 @@ function discount_orderDetails() {
      
 //admin transaction page loads
 if(url.indexOf('/admin/transactions/details') >= 0) {
-    getDiscountValue();
-    discount_orderDetails()
+   
+    
+    $("#transaction-detail-view .panel-order .price-cal").each(function(){
+
+        var $this =  $(this);
+
+        getDiscountValue();
+        discount_orderDetails($this);
+      
+    });
 }
     });
     

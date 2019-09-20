@@ -52,8 +52,12 @@ function getDiscountValue(){
 }
 
 function getDiscountValueCheckout(){
-    var invoiceNumber = $('#OrderGuids').val();
-	var data = { 'invoice_number': invoiceNumber }; 
+    var invoiceNumber = $('#OrderGuids').val().split(",");
+    var invoice = invoiceNumber[0];
+    console.log(invoice);
+    //invoiceNumber.forEach(function (item, index) {
+    //console.log(item, index);
+	var data = { 'invoice_number': invoice }; 
     var apiUrl = packagePaths + '/get_discount_checkout.php';
     $.ajax({
         url: apiUrl,
@@ -75,6 +79,7 @@ function getDiscountValueCheckout(){
             toastr.error('Error!');
         }
     });
+//});
 }
 
 
@@ -296,7 +301,13 @@ function decrementCouponBespoke() {
 }
 //setting the discount value, total values - discount value
 function updateOrders() {
-    var data = { 'order_guid' : $('#orderGuids').val(), 'discount_val': couponvalue, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId}; 
+    var orderguid = $('#orderGuids').val().split(",");
+    // console.log(couponvalue);
+
+    orderguid.forEach(function (item, index) {
+        // console.log(item, index);
+        // console.log('discountval ' + discountVal);
+    var data = { 'order_guid' : item, 'discount_val': discountVal, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId, 'discountTotal': couponvalue}; 
     var apiUrl = packagePaths + '/update_orders.php';
     $.ajax({
         url: apiUrl,
@@ -309,12 +320,17 @@ function updateOrders() {
             toastr.error('Error!');
         }
     });
+});
 }
 // orderGuids
 
 //setting the discount value, total values - discount value
 function updateOrders_del2() {
-    var data = { 'order_guid' : $('#orderGuids').val(), 'discount_val': couponvalue, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId}; 
+    var orderguid = $('#orderGuids').val().split(",");
+    // console.log(couponvalue);
+    orderguid.forEach(function (item, index) {
+        // console.log(item, index);
+    var data = { 'order_guid' : item, 'discount_val': discountVal, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId, 'discountTotal': couponvalue}; 
     var apiUrl = packagePaths + '/update_orders.php';
     $.ajax({
         url: apiUrl,
@@ -327,6 +343,7 @@ function updateOrders_del2() {
             toastr.error('Error!');
         }
     });
+})
 }
 
 function validate_coupon_checkout(){
@@ -615,7 +632,7 @@ function showPromoCodeSpacetime(){
     $('#price_amt').text(couponvalue.toFixed(2));
     //Total
     $('.chkout-totla-amt').text(mpCurrencycode + formatter.format(totalwithDelivery));
-    $('.chkout-item-price').text(mpCurrencycode + formatter.format(totalwithcoupon));
+    // $('.chkout-item-price').text(mpCurrencycode + formatter.format(totalwithcoupon));
     updateOrders();
  }
 
@@ -697,6 +714,7 @@ function discount_orderDetails() {
 
 function discount_checkout() {
     waitForElement('#couponhidden',function(){
+        console.log('disc-chekout ' + coupondiscount);
         var last = $('.checkout-itm-total-sec .checkout-total-line1:last');
         var promo = '<div class="checkout-totline-left" id="coupon_ordetails">tash</div> <div class="checkout-itm-tprice" id="couponvalue">13123213</div> <div class="clearfix"></div>';
         last.append(promo);
