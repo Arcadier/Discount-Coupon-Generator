@@ -47,6 +47,7 @@ $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exi
         $coupon_qty =  json_encode($coupondetails1['Records'][0]['Quantity']);
         $coupon_id = json_encode($coupondetails1['Records'][0]['Id']);
         $tcoupon_id = str_replace('"', '',  $coupon_id); 
+
         if($isLimited == 1){
             //1. Get the current quantity and coupon id of the coupon increment by 1
             $coupon_left = $coupon_qty + 1;
@@ -55,7 +56,6 @@ $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exi
             //3. Save the Coupon details along with the fetched campaign ID
             $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Coupon/rows/'. $tcoupon_id;
             $result =  callAPI("PUT",$admin_token['access_token'], $url, $quantity);
-            
         }
     }
     ?>

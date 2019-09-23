@@ -72,12 +72,12 @@ $packageCustomFields = callAPI("GET", null, $url, false);
 $order_exists = array(array('Name' => 'OrderId', "Operator" => "in",'Value' => $order_guid));
 $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Orders';
 $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exists);
- $rec = json_encode($couponDetails['Records']);
- $curr_order_id = json_encode($couponDetails['Records'][0]['Id']);
- $curr_orderid = str_replace('"', '', $curr_order_id); 
+$rec = json_encode($couponDetails['Records']);
+$curr_order_id = json_encode($couponDetails['Records'][0]['Id']);
+$curr_orderid = str_replace('"', '', $curr_order_id); 
 
     if ($rec == '[]') {
-        error_log('no, i dont exists,');
+        error_log('not exists,');
         $couponCode = '';
         $order_details = array('OrderId' => $order_guid, 'CouponCode' => $coupon_name, 'DiscountValue' => $discountTotal, 'DiscountPercentage' => $coupon_value);
         //3. Save the Coupon details along with the fetched campaign ID
@@ -85,9 +85,7 @@ $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $order_exi
         $result =  callAPI("POST",$admin_token['access_token'], $url, $order_details);
         error_log($url);
         error_log(json_encode($result));
-        // $log_file = "error.log"; 
-        // logging error message to given log file 
-        // error_log(json_encode($result), 3, $log_file); 
+     
     }else{
         //update 
         $update_details = array('CouponCode' => $coupon_name, 'DiscountValue' => $discountTotal, 'DiscountPercentage' => $coupon_value);

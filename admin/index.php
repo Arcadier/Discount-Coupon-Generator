@@ -333,7 +333,6 @@ $(document).ready(function() {
 
             jQuery('.btn_delete_act').click(function() {
             var page_id = $(this).attr('dir');
-             console.log(page_id);
 
              $('.record_id').val(page_id);
 
@@ -385,20 +384,20 @@ $(document).ready(function() {
                 var isUpdate =  $('.coupon_id').attr('dir');
                 if (isUpdate ==  'update') {
                     $("#redeem").removeAttr("disabled");
-                 $("#coupon_code").attr("disabled", "disabled");
+                    $("#coupon_code").attr("disabled", "disabled");
                 }else {
-                $("#redeem").attr("disabled", "disabled");
-                $("#coupon_code").removeAttr("disabled");
+                    $("#redeem").attr("disabled", "disabled");
+                    $("#coupon_code").removeAttr("disabled");
                 }
-                
+                    
             } else {
-                $("#redeem").removeAttr("disabled");
-                 $("#coupon_code").attr("disabled", "disabled");
-                 //GENERATE RANDOM COUPON CODE
-                var randcoupon =  Math.random().toString(36).substr(2, 10);
-                randcouponstring = randcoupon.toUpperCase();
-                $("#coupon_code").val(randcouponstring);
-            }
+                    $("#redeem").removeAttr("disabled");
+                    $("#coupon_code").attr("disabled", "disabled");
+                    //GENERATE RANDOM COUPON CODE
+                    var randcoupon =  Math.random().toString(36).substr(2, 10);
+                    randcouponstring = randcoupon.toUpperCase();
+                    $("#coupon_code").val(randcouponstring);
+                }
         }
         </script>
         

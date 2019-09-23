@@ -20,10 +20,8 @@ $result = callAPI("GET", $admin_token['access_token'], $url, false);
 $orderId = $result['Orders'][0]['ID'];
 
 $coupon_details = array(array('Name' => 'OrderId', 'Value' => $invoice_number));
-
 $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Orders';
 $couponDetails =  callAPI("POST", $admin_token['access_token'], $url, $coupon_details);
 echo json_encode(['result' => $couponDetails['Records']]);
-error_log('--- ' . json_encode($couponDetails['Records']));
 
 ?>

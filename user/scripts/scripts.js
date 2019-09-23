@@ -54,9 +54,6 @@ function getDiscountValue(){
 function getDiscountValueCheckout(){
     var invoiceNumber = $('#OrderGuids').val().split(",");
     var invoice = invoiceNumber[0];
-    console.log(invoice);
-    //invoiceNumber.forEach(function (item, index) {
-    //console.log(item, index);
 	var data = { 'invoice_number': invoice }; 
     var apiUrl = packagePaths + '/get_discount_checkout.php';
     $.ajax({
@@ -66,7 +63,6 @@ function getDiscountValueCheckout(){
         data: JSON.stringify(data),
         success: function(result) {
             var discountDetails = $.parseJSON(result);
-            console.table(discountDetails);
             if (discountDetails.result.length == 0) {
             }else{
                 couponname = discountDetails.result[0].CouponCode;
@@ -79,9 +75,7 @@ function getDiscountValueCheckout(){
             toastr.error('Error!');
         }
     });
-//});
 }
-
 
 //ORDER HISTORY MERCHANT
 function getDiscountValueMerchant(){
@@ -150,7 +144,6 @@ function getCouponDetails(){
         data: JSON.stringify(data),
         success: function(result) {
             var coupondetails = $.parseJSON(result);
-           console.dir(coupondetails);
             if (coupondetails.result.length == 0) {
                $('#msg').remove();
                 returnError('Invalid');
@@ -167,7 +160,6 @@ function getCouponDetails(){
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.page-review').append(couponspan);
            }
-           
         },
         error: function(jqXHR, status, err) {
         }
@@ -226,7 +218,6 @@ function checkRedeemStatus(){
                 }
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.page').append(couponspan); 
-                 //do nothing
              }
             else {
         
@@ -302,11 +293,7 @@ function decrementCouponBespoke() {
 //setting the discount value, total values - discount value
 function updateOrders() {
     var orderguid = $('#orderGuids').val().split(",");
-    // console.log(couponvalue);
-
     orderguid.forEach(function (item, index) {
-        // console.log(item, index);
-        // console.log('discountval ' + discountVal);
     var data = { 'order_guid' : item, 'discount_val': discountVal, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId, 'discountTotal': couponvalue}; 
     var apiUrl = packagePaths + '/update_orders.php';
     $.ajax({
@@ -323,13 +310,11 @@ function updateOrders() {
 });
 }
 // orderGuids
-
 //setting the discount value, total values - discount value
 function updateOrders_del2() {
     var orderguid = $('#orderGuids').val().split(",");
     // console.log(couponvalue);
     orderguid.forEach(function (item, index) {
-        // console.log(item, index);
     var data = { 'order_guid' : item, 'discount_val': discountVal, 'coupon_code': couponcode, 'isLimited' : isLimited,'coupon_qty':couponqty,'coupon_id' : couponId, 'discountTotal': couponvalue}; 
     var apiUrl = packagePaths + '/update_orders.php';
     $.ajax({
@@ -425,27 +410,20 @@ $(document).ready(function() {
                     
                         couponvalue = $('#price_amt').text();
                         coup =  couponvalue.replace(/[^\d.-]/g, '')
-                        
                     }
-                   // console.log('coup ' + couponvalue);
+                  
                     subtotal_del2 =  $('.l_box p .sub-total').text();
 
                     subtotal_del2 =  subtotal_del2.replace(/[^\d.-]/g, '');
-                    // subtotal_del2 = parseFloat(subtotal_del2);
-                    //console.log('subtotal del 2 ' + subtotal_del2);
-                    // console.log('subdel4 ' + subtotal_del4);
                     deliveryCharge =  $('.l_box p .delivery-costs').text();
 
                     subtotal_del2 = parseFloat(subtotal_del2).toFixed(2);;
-                    //console.log('subtotal del 2 ' + subtotal_del2);
                     deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
                     deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
-                    //console.log('del charge '  + deliveryCharge);
-                    
+                
                     totalwithcoupon = subtotal_del2 - coup;
-                   // console.log('total with coup ' + totalwithcoupon);
+                  
                     totalwithDelivery = parseFloat(totalwithcoupon) + parseFloat(deliveryCharge);
-                   // console.log('totalwdel ' + totalwithDelivery);
                     $('#currencySym').text('-' + mpCurrencycode);
                     //total - coupon discount
                     $('#price_amt').text(couponvalue);
@@ -598,12 +576,9 @@ function showPromoCodeSpacetime(){
     //1.get the current subtotal
     currentSubtotal = $('.checkout-itm-tprice:first').text();
     deliveryCharge =  $('.checkout-itm-total-sec .checkout-total-line1:nth-child(2) .checkout-itm-tprice').text();
-    console.log('del charge ' + deliveryCharge);
 
     bulkdel = $('.checkout-itm-total-sec .checkout-total-line1:nth-child(3) .checkout-itm-tprice').text();
-    console.log('del charge bullk ' + bulkdel);
-
-
+   
     //trim the characters then parse
     currentSubtotal1 = currentSubtotal.replace(/[^\d.-]/g, '');
 
@@ -624,7 +599,6 @@ function showPromoCodeSpacetime(){
     
     couponvalue =  parseFloat(calculatePercentage(discountVal,currentSubtotal1));
     totalwithcoupon = currentSubtotal1 - couponvalue;
-    //console.log('totwithcoupon ' + totalwithcoupon)
     totalwithDelivery = totalwithcoupon + deliveryCharge - bulkdel;
 
     $('#currencySym').text('-' + mpCurrencycode);
@@ -632,18 +606,15 @@ function showPromoCodeSpacetime(){
     $('#price_amt').text(couponvalue.toFixed(2));
     //Total
     $('.chkout-totla-amt').text(mpCurrencycode + formatter.format(totalwithDelivery));
-    // $('.chkout-item-price').text(mpCurrencycode + formatter.format(totalwithcoupon));
     updateOrders();
  }
 
-//  sub-total
 //SHOW PROMOCODE FOR DELIVERY 2.0 
 function showPromoCodeDel2(){
     mpCurrencycode = $('#currencyCode').val();
     var promo = '<div class="coupon-con" id="coupon"><span class="coupon-code" id="couponinput"><i title="Remove" class="fa fa-times remove-coupon" id="remove"></i></span> </div>';
     $('#promodiv').prepend(promo); 
     var discount = '<div class="coupon-con pull-right" id="discount"><span class="pull-right"><span id="currencySym"></span><span class="sub-total"><span id="price_amt" <span id="price_amt"></span></span> </span></span></div>';
-
     $('#couponinput').append(promocode);
     $('#coupon').append(discount);
 
@@ -654,23 +625,16 @@ function showPromoCodeDel2(){
         $('#couponinput').css( "margin-right", "3px");
         $('#msg').remove();
     });
-
     //calculate the current subtotal - the coupon value
     subtotal_del2=  $('.l_box p .sub-total').text();
     deliveryCharge =  $('.l_box p .delivery-costs').text();
     subtotal_del= subtotal_del2.replace(/[^\d.-]/g, '');
-
     deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
     deliveryCharge = deliveryCharge.replace(/-/g, "");
-
     deliveryCharge = parseFloat(deliveryCharge);
-    console.log('del charge ' + deliveryCharge);
     couponvalue =  parseFloat(calculatePercentage(discountVal,subtotal_del));
-    console.log('coup ' + couponvalue);
     totalwithcoupon = subtotal_del - couponvalue ;
-    console.log('totalwcoupon '+ totalwithcoupon);
     totalwithDelivery = totalwithcoupon + deliveryCharge;
-    console.log('totalwithdel ' + totalwithDelivery);
     $('#currencySym').text('-' + mpCurrencycode);
     //total - coupon discount
     $('#price_amt').text(couponvalue.toFixed(2));
@@ -678,7 +642,6 @@ function showPromoCodeDel2(){
     $('.total_area .total-cost').text(formatter.format(totalwithDelivery));
     // updateOrders();
     updateOrders_del2();
-
 }
  function returnError(errorType) {
     if (errorType == 'Invalid') {
@@ -748,7 +711,7 @@ function discount_orderDetails_spacetime() {
         $('.ordr-dtls-trans-info').append(promo);
         $('#coupon_ordetails').css('display','inline');
         var discount = '<div class="coupon-con" id="discount"><span id="currencySym"></span><span id="price_amt"></span></div>';
-        waitForElement('.coupon-con',function(){
+    waitForElement('.coupon-con',function(){
             $('.coupon-con').css('display','inline');
         });
      $('#couponvalue').text(couponname);
@@ -758,7 +721,7 @@ function discount_orderDetails_spacetime() {
      $('#currencySym').css('width','auto');
      $('#price_amt').css('width','auto');
    });
-  }
+}
 
 //FORM ACTIONS
 //VALIDATE IF THE COUPON IS EXPIRED OR CONSUMES THE MAX AMOUNT
@@ -769,22 +732,19 @@ $('#applybutton').click(function(){
      promocode =  $('#promocode').val().toUpperCase();
      getCouponDetails();
     waitForElement('#couponhidden',function(){
-        console.log(isEnabled);
-    if(isEnabled == 0) {
-        returnError('Expired');
-     }
-     else if (couponqty == maxRedeem) {
-        //TODO: Check if the coupon attained it's maximum allowed redeemable quantity
-        returnError('Expired');
-        console.log('Max redeem '+ maxRedeem);
-        console.log('Quantity ' + couponqty);
-    }     
-    else { //return error
-      if ($('#promodiv').find('#coupon').length == 0) {  
-        showPromoCode();
-      }
-    }
-})
+        if(isEnabled == 0) {
+            returnError('Expired');
+        }
+        else if (couponqty == maxRedeem) {
+            //TODO: Check if the coupon attained it's maximum allowed redeemable quantity
+            returnError('Expired');
+        }     
+        else { //return error
+        if ($('#promodiv').find('#coupon').length == 0) {  
+            showPromoCode();
+        }
+        }
+    })
 })
 //SPACETIME
 $('#applybutton1').click(function(){
@@ -863,7 +823,6 @@ $("body").on("click" , "#remove" , function(){
             subtotal_del = parseFloat(subtotal_del).toFixed(2);
             deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
             deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
-            // couponvalue =  parseFloat(calculatePercentage(discountVal,subtotal_del));
             couponvalue = parseFloat(couponvalue).toFixed(2);
             totalwithcoupon = subtotal_del - couponvalue ;
             totalwithDelivery = parseFloat(totalwithcoupon) + parseFloat(deliveryCharge);
