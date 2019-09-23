@@ -94,7 +94,7 @@ function getDiscountValueMerchant(){
             if (discountDetails1.result.length == 0) {
             }else{
                 couponname = discountDetails1.result[0].CouponCode;
-                coupondiscount = discountDetails1.result[0].DiscountValue;  
+                coupondiscount = discountDetails1.result[0].DiscountPercentage;  
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.seller-order-detail-page').append(couponspan);
             }
@@ -122,7 +122,7 @@ function getDiscountValueMerchant_spacetime(){
             if (discountDetails1.result.length == 0) {
             }else{
                 couponname = discountDetails1.result[0].CouponCode;
-                coupondiscount = discountDetails1.result[0].DiscountValue;  
+                coupondiscount = discountDetails1.result[0].DiscountPercentage;  
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.page-seller').append(couponspan);
             }
@@ -412,18 +412,20 @@ $(document).ready(function() {
                         coup =  couponvalue.replace(/[^\d.-]/g, '')
                     }
                   
-                    subtotal_del2 =  $('.l_box p .sub-total').text();
-
+                    subtotal_del2 =  $('.l_box p .sub-total:first').text();
+                    console.log('subtotal  ' + subtotal_del2);
                     subtotal_del2 =  subtotal_del2.replace(/[^\d.-]/g, '');
+                    console.log('subtotal  ' + subtotal_del2);
                     deliveryCharge =  $('.l_box p .delivery-costs').text();
-
-                    subtotal_del2 = parseFloat(subtotal_del2).toFixed(2);;
+                    // subtotal_del2 = parseFloat(subtotal_del2).toFixed(2);
+                    console.log('subtotal  ' + subtotal_del2);
                     deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
-                    deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
-                
+                    // deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
+                    
                     totalwithcoupon = subtotal_del2 - coup;
-                  
+                    console.log('totalwithcoupon ' + totalwithcoupon);
                     totalwithDelivery = parseFloat(totalwithcoupon) + parseFloat(deliveryCharge);
+                    console.log('totalwithdel '+ totalwithDelivery);
                     $('#currencySym').text('-' + mpCurrencycode);
                     //total - coupon discount
                     $('#price_amt').text(couponvalue);
@@ -446,7 +448,8 @@ $(document).ready(function() {
        if ($('#maketplace-type').val()=='spacetime') {
         discount_orderDetails_spacetime(); 
        }else {
-        discount_orderDetails();
+        // discount_orderDetails();
+        discount_orderDetailsbuyer()
        }    
     }
 
@@ -662,6 +665,10 @@ function discount_orderDetails() {
     waitForElement('#couponhidden',function(){
         var promo = '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
         $('.ordr-dtls-trans-info').append(promo);
+        var total  = $('.ordr-dtls-trans-line:first').text();
+        console.log(total);
+        total1 = total.replace(/[^\d.-]/g, ''); 
+        console.log(total1);
         $('#coupon_ordetails').css('display','inline-flex');
         var discount = '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
         waitForElement('#discount',function(){
@@ -670,9 +677,39 @@ function discount_orderDetails() {
         $('#couponvalue').text(couponname);
         $('#coupon_ordetails').append(discount);
         $('#currencySym').text('- ' + mpCurrencycode);
-        $('#price_amt').text(formatter.format(coupondiscount));
+        var disc =  coupondiscount * total1 / 100;
+        console.log('disc ' + disc);
+        $('#price_amt').text(formatter.format(disc));
+
    });
 }
+
+function discount_orderDetailsbuyer() {
+    waitForElement('#couponhidden',function(){
+        var promo = '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
+        $('.ordr-dtls-trans-info').append(promo);
+        var total  = $('.ordr-dtls-trans-line:first').text();
+        console.log(total);
+        total1 = total.replace(/[^\d.-]/g, ''); 
+        console.log(total1);
+        $('#coupon_ordetails').css('display','inline-flex');
+        var discount = '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
+        waitForElement('#discount',function(){
+            $('#discount span').css('display','inline');
+        });
+        $('#couponvalue').text(couponname);
+        $('#coupon_ordetails').append(discount);
+        $('#currencySym').text('- ' + mpCurrencycode);
+       // var disc =  coupondiscount * total1 / 100;
+       // console.log('disc ' + disc);
+        $('#price_amt').text(formatter.format(coupondiscount));
+
+   });
+}
+
+
+
+
 
 
 function discount_checkout() {
@@ -690,6 +727,11 @@ function discount_orderDetails_sp_merchant() {
     waitForElement('#couponhidden',function(){
             var promo = '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
             $('.ordr-dtls-trans-info').append(promo);
+            var total  = $('.ordr-dtls-trans-line:first').text();
+            console.log(total);
+            total1 = total.replace(/[^\d.-]/g, ''); 
+            console.log(total1);
+
             $('#coupon_ordetails').css('display','inline');
             var discount = '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
         waitForElement('#discount',function(){
@@ -698,7 +740,8 @@ function discount_orderDetails_sp_merchant() {
         $('#couponvalue').text(couponname);
         $('#coupon_ordetails').append(discount);
         $('#currencySym').text('-' + mpCurrencycode);
-        $('#price_amt').text(formatter.format(coupondiscount));
+        var disc =  coupondiscount * total1 / 100;
+        $('#price_amt').text(formatter.format(disc));
         $('#currencySym').css('width','auto');
         $('#price_amt').css('width','auto');
    });

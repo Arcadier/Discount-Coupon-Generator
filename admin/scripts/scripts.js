@@ -71,7 +71,7 @@ function discount_orderDetails(priceCal) {
             var t_adminfee = adminfee.replace(/[^\d.-]/g, '');
             t_adminfee = t_adminfee.replace(/-/g, "");
         
-
+            
         var promo = '<p class = "amount"> </p>';
         priceCal.append(promo);
         var total =   parseFloat(coupondiscount) * t_subtotal / 100;    
