@@ -4,7 +4,7 @@
 
 ### Who can manipulate this code?
 * Developers? (Yes)
-* Marketplace Owners (No. But it can be *used* and is already available on your `Admin Portal` > `Plug-Ins` > `Available`)
+* Marketplace Owners (No. But it can be used and is already available on your `Admin Portal` > `Plug-Ins` > `Available`)
 
 ### Pre-Installation requirements
 * A [Developer dashboard](https://dashboard.sandbox.arcadier.io/account/login)
