@@ -178,7 +178,7 @@ function showPromoCodeDel2(){
     totalwithDelivery = totalwithcoupon + deliveryCharge;
     $('#currencySym').text('-' + mpCurrencycode);
     //total - coupon discount
-    $('#price_amt').text(couponvalue.toFixed(2));
+    $('#price_amt').text(formatter.format(couponvalue));
     //Total
     $('.total_area .total-cost').text(formatter.format(totalwithDelivery));
     // updateOrders();
