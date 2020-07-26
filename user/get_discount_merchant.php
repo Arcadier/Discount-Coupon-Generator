@@ -11,8 +11,15 @@ $userToken = $_COOKIE["webapitoken"];
 $url = $baseUrl . '/api/v2/users/'; 
 $result = callAPI("GET", $userToken, $url, false);
 $userId = $result['ID'];
+// get admin id
+$url = $baseUrl . '/api/v2/users/'; 
+$result = callAPI("GET", $admin_token['access_token'], $url, false);
+error_log('admin ' . json_encode($result));
+$admin_id = $result['ID'];
+
+
 //get the discount value
-$url =  $baseUrl . '/api/v2/admins/' . $userId .'/transactions/'. $invoice_number;
+$url =  $baseUrl . '/api/v2/admins/' . $admin_id .'/transactions/'. $invoice_number;
 $result = callAPI("GET", $admin_token['access_token'], $url, false);
 $orderId = $result['Orders'][0]['ID'];
 $coupon_details = array(array('Name' => 'OrderId', 'Value' => $orderId));

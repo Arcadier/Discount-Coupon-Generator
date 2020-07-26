@@ -26,7 +26,6 @@ var invoiceStatus;
 var bulkdel;
 
 
-
 function waitForElement(elementPath, callBack){
 	window.setTimeout(function(){
 	if($(elementPath).length){
@@ -902,7 +901,7 @@ $("body").on("click" , "#remove" , function(){
             deliveryCharge =  deliveryCharge.replace(/[^\d.-]/g, '');
             deliveryCharge = parseFloat(deliveryCharge).toFixed(2);
             couponvalue = parseFloat(couponvalue).toFixed(2);
-            totalwithcoupon = subtotal_del - couponvalue ;
+            totalwithcoupon = subtotal_del - couponvalue;
             totalwithDelivery = parseFloat(totalwithcoupon) + parseFloat(deliveryCharge);
             $('#currencySym').text('-' + mpCurrencycode);
             //total - coupon discount
