@@ -75,7 +75,7 @@ function discount_orderDetails(priceCal) {
         var promo = '<p class = "amount"> </p>';
         priceCal.append(promo);
         var total =   parseFloat(coupondiscount) * t_subtotal / 100;    
-        priceCal.find('.amount').text('- ' + $('#currencyCode').val() + formatter.format(total));
+        priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(total));
         $('.amount').prepend('<label id ="couponname"> </label>');
         $('.amount').children('label').text(couponname);     
 
@@ -85,7 +85,7 @@ function discount_orderDetails(priceCal) {
             var parents = priceCal.parent();
             var totalLabel = parents.find('.description:contains("TOTAL ORDER PAYOUT") h1');
             var test =  formatter.format(Total); 
-            totalLabel.text($('#currencyCode').val() + formatter.format(Total));
+            totalLabel.text($('#currencyWithSymbol').val() + formatter.format(Total));
     });
     })
 }
@@ -95,7 +95,7 @@ function discount_orderDetails(priceCal) {
             //admin transaction page loads
             if(url.indexOf('/admin/transactions/details') >= 0) {
             
-                $("#transaction-detail-view .panel-order .price-cal").each(function(){
+                $(".transaction-detail .panel-order .price-cal").each(function(){
                     var $this =  $(this);
                     getDiscountValue();
                     discount_orderDetails($this);
