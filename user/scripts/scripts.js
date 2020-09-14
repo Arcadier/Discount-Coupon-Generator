@@ -1,4 +1,5 @@
-(function () {
+(function ()
+{
   var scriptSrc = document.currentScript.src;
   var pathname = (
     window.location.pathname + window.location.search
@@ -7,7 +8,8 @@
   var userId = $("#userGuid").val();
   var re = /([a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12})/i;
   var packageId = re.exec(scriptSrc.toLowerCase())[1];
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", function ()
+  {
     const HOST = window.location.host;
     var customFieldPrefix = packageId.replace(/-/g, "");
     var token = commonModule.getCookie("webapitoken");
@@ -33,8 +35,10 @@
     var invoiceStatus;
     var bulkdel;
 
-    function waitForElement(elementPath, callBack) {
-      window.setTimeout(function () {
+    function waitForElement(elementPath, callBack)
+    {
+      window.setTimeout(function ()
+      {
         if ($(elementPath).length) {
           callBack(elementPath, $(elementPath));
         } else {
@@ -48,7 +52,8 @@
 
     //append the coupon input
 
-    function appendCouponSpacetime() {
+    function appendCouponSpacetime()
+    {
       var delcostdiv = $(
         ".order-summary-price .review-order-container:nth-child(2)"
       );
@@ -56,7 +61,8 @@
         '<div class="promocode-update" id="promodiv"><input name="coupon-code" placeholder="PROMOCODE" class="pr-text" maxlength="10" type="text" id="promocode"><button type="button" class="apply-promo-btn" id="applybutton1">Apply</button></div>';
       delcostdiv.after(promodiv);
     }
-    function appendCoupon() {
+    function appendCoupon()
+    {
       var last = $(".checkout-itm-total-sec div.checkout-total-line1:last");
       var promodiv =
         '<div class="promocode-update" id="promodiv" style="margin-top:10px"><input name="coupon-code" placeholder="PROMOCODE" class="pr-text" maxlength="10" type="text" id="promocode"><button type="button" class="apply-promo-btn" id="applybutton">Apply</button></div>';
@@ -64,7 +70,8 @@
       last.append(promodiv);
     }
 
-    function appendCouponDelivery2() {
+    function appendCouponDelivery2()
+    {
       //  var ordersummaryContainer =  $('.l_box p:contains("Delivery Costs")');
       //  $(".wrapper").children("[class=qe]")
       var ordersummaryContainer = $(".last_stage_box").children(
@@ -80,7 +87,8 @@
     //toggle the promo code and the discount % if the coupon is
 
     //TODO: Optimize this function
-    function showPromoCodeSpacetime() {
+    function showPromoCodeSpacetime()
+    {
       mpCurrencycode = $("#currencyCode").val();
       var promo =
         '<div class="coupon-con review-order-container" id="coupon"><span class="coupon-code" id="couponinput"><i title="Remove" class="fa fa-times remove-coupon" id="remove"></i></span> </div>';
@@ -121,7 +129,8 @@
       );
       updateOrders();
     }
-    function showPromoCode() {
+    function showPromoCode()
+    {
       mpCurrencycode = $("#currencyCode").val();
       var promo =
         '<div class="coupon-con checkout-total-line1" id="coupon"><span class="coupon-code" id="couponinput"><i title="Remove" class="fa fa-times remove-coupon" id="remove"></i></span> </div>';
@@ -132,7 +141,8 @@
       $("#couponinput").append(promocode);
       $("#coupon").prepend(discount);
 
-      waitForElement("#promodiv", function () {
+      waitForElement("#promodiv", function ()
+      {
         $("#discount .checkout-itm-tprice").css("margin-right", "31px");
         $("#msg").remove();
       });
@@ -183,7 +193,8 @@
     }
 
     //SHOW PROMOCODE FOR DELIVERY 2.0
-    function showPromoCodeDel2() {
+    function showPromoCodeDel2()
+    {
       mpCurrencycode = $("#currencyCode").val();
       var promo =
         '<div class="coupon-con" id="coupon"><span class="coupon-code" id="couponinput"><i title="Remove" class="fa fa-times remove-coupon" id="remove"></i></span> </div>';
@@ -193,7 +204,8 @@
       $("#couponinput").append(promocode);
       $("#coupon").append(discount);
 
-      waitForElement("#promodiv", function () {
+      waitForElement("#promodiv", function ()
+      {
         $(".coupon-con").css("display", "inline-flex");
         $("#discount").css("width", "auto");
         $("#couponinput").css("width", "-=5");
@@ -218,7 +230,8 @@
       // updateOrders();
       updateOrders_del2();
     }
-    function returnError(errorType) {
+    function returnError(errorType)
+    {
       if (errorType == "Invalid") {
         errorType =
           '<span class="coupon-msg" id="msg">Coupon code invalid</span>';
@@ -230,12 +243,15 @@
         $("#promodiv").append(errorType);
       }
     }
-    function calculatePercentage(num, amount) {
+    function calculatePercentage(num, amount)
+    {
       return parseFloat((num * amount) / 100).toFixed(2);
     }
 
-    function discount_orderDetails() {
-      waitForElement("#couponhidden", function () {
+    function discount_orderDetails()
+    {
+      waitForElement("#couponhidden", function ()
+      {
         var promo =
           '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
         $(".ordr-dtls-trans-info").append(promo);
@@ -246,7 +262,8 @@
         $("#coupon_ordetails").css("display", "inline-flex");
         var discount =
           '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
-        waitForElement("#discount", function () {
+        waitForElement("#discount", function ()
+        {
           $("#discount span").css("display", "inline");
         });
         $("#couponvalue").text(couponname);
@@ -258,8 +275,10 @@
       });
     }
 
-    function discount_orderDetailsbuyer() {
-      waitForElement("#couponhidden", function () {
+    function discount_orderDetailsbuyer()
+    {
+      waitForElement("#couponhidden", function ()
+      {
         var promo =
           '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
         $(".ordr-dtls-trans-info").append(promo);
@@ -270,7 +289,8 @@
         $("#coupon_ordetails").css("display", "inline-flex");
         var discount =
           '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
-        waitForElement("#discount", function () {
+        waitForElement("#discount", function ()
+        {
           $("#discount span").css("display", "inline");
         });
         $("#couponvalue").text(couponname);
@@ -282,8 +302,10 @@
       });
     }
 
-    function discount_checkout() {
-      waitForElement("#couponhidden", function () {
+    function discount_checkout()
+    {
+      waitForElement("#couponhidden", function ()
+      {
         console.log("disc-chekout " + coupondiscount);
         var last = $(".checkout-itm-total-sec .checkout-total-line1:last");
         var promo =
@@ -296,8 +318,10 @@
       });
     }
 
-    function discount_orderDetails_sp_merchant() {
-      waitForElement("#couponhidden", function () {
+    function discount_orderDetails_sp_merchant()
+    {
+      waitForElement("#couponhidden", function ()
+      {
         var promo =
           '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
         $(".ordr-dtls-trans-info").append(promo);
@@ -309,7 +333,8 @@
         $("#coupon_ordetails").css("display", "inline");
         var discount =
           '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
-        waitForElement("#discount", function () {
+        waitForElement("#discount", function ()
+        {
           $(".coupon-con").css("display", "inline");
         });
         $("#couponvalue").text(couponname);
@@ -323,15 +348,18 @@
     }
 
     //APPEND DISCOUNT DETAIL TO BUYER PURCHASE HISTORY -  SPACETIME
-    function discount_orderDetails_spacetime() {
-      waitForElement("#couponhidden", function () {
+    function discount_orderDetails_spacetime()
+    {
+      waitForElement("#couponhidden", function ()
+      {
         var promo =
           '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span> </div>';
         $(".ordr-dtls-trans-info").append(promo);
         $("#coupon_ordetails").css("display", "inline");
         var discount =
           '<div class="coupon-con" id="discount"><span id="currencySym"></span><span id="price_amt"></span></div>';
-        waitForElement(".coupon-con", function () {
+        waitForElement(".coupon-con", function ()
+        {
           $(".coupon-con").css("display", "inline");
         });
         $("#couponvalue").text(couponname);
@@ -344,7 +372,8 @@
     }
 
     //order history -BUYER
-    function getDiscountValue() {
+    function getDiscountValue()
+    {
       var invoiceNumber = pathname.split("=")[1];
       var data = { invoice_number: invoiceNumber };
       var apiUrl = packagePaths + "/get_discount.php";
@@ -353,7 +382,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var discountDetails = $.parseJSON(result);
           if (discountDetails.result.length == 0) {
           } else {
@@ -364,13 +394,15 @@
             $(".purchase-pg-hstry-dtls").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    function getDiscountValueCheckout() {
+    function getDiscountValueCheckout()
+    {
       var invoiceNumber = $("#OrderGuids").val().split(",");
       var invoice = invoiceNumber[0];
       var data = { invoice_number: invoice };
@@ -380,7 +412,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var discountDetails = $.parseJSON(result);
           if (discountDetails.result.length == 0) {
           } else {
@@ -391,22 +424,26 @@
             $(".page-payment").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
     //ORDER HISTORY MERCHANT
-    function getDiscountValueMerchant() {
-      var invoiceNumberMerchant = $(
-        '.ordr-dtls-invoiceid:contains("INVOICE ID")'
-      )
-        .clone()
-        .children()
-        .remove()
-        .end()
-        .text();
+    function getDiscountValueMerchant()
+    {
+
+      var invoiceNumberMerchant = $('.ordr-dtls-invoiceid .innvoice-id').clone().children().remove().end().text();
+      // var invoiceNumberMerchant = $(
+      //   '.ordr-dtls-invoiceid:contains("INVOICE ID")'
+      // )
+      //   .clone()
+      //   .children()
+      //   .remove()
+      //   .end()
+      //   .text();
       invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
       invoiceNumberMerchant = invoiceNumberMerchant.trim();
       var data = { invoice_number: invoiceNumberMerchant };
@@ -416,7 +453,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var discountDetails1 = $.parseJSON(result);
           if (discountDetails1.result.length == 0) {
           } else {
@@ -427,15 +465,18 @@
             $(".seller-order-detail-page").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
     //ORDER HISTORY ---  MERCHANT SPACETIME
-    function getDiscountValueMerchant_spacetime() {
+    function getDiscountValueMerchant_spacetime()
+    {
       var invoiceNumberMerchant = $('.ordr-dtls-orderid:contains("Invoice id")')
+
         .clone()
         .children()
         .remove()
@@ -450,7 +491,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var discountDetails1 = $.parseJSON(result);
           if (discountDetails1.result.length == 0) {
           } else {
@@ -461,13 +503,15 @@
             $(".page-seller").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    function getCouponDetails() {
+    function getCouponDetails()
+    {
       promocode = $("#promocode").val().toUpperCase();
       var data = { promocode: promocode };
       var apiUrl = packagePaths + "/get_coupon_discount.php";
@@ -476,7 +520,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var coupondetails = $.parseJSON(result);
           if (coupondetails.result.length == 0) {
             $("#msg").remove();
@@ -495,11 +540,12 @@
             $(".page-review").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {},
+        error: function (jqXHR, status, err) { },
       });
     }
 
-    function getCouponDetailsDel2() {
+    function getCouponDetailsDel2()
+    {
       console.info("get coupon details");
       promocode = $("#promocode").val().toUpperCase();
       var data = { promocode: promocode };
@@ -510,7 +556,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var coupondetails = $.parseJSON(result);
           if (coupondetails.result.length == 0) {
             $("#msg").remove();
@@ -529,10 +576,11 @@
             $(".page-package").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {},
+        error: function (jqXHR, status, err) { },
       });
     }
-    function checkRedeemStatus() {
+    function checkRedeemStatus()
+    {
       var orderId = window.location.pathname.split("/").slice(-1)[0]; // get the invoice number here or from (invoice-id class);
       var data = { order_guid: orderId };
       var apiUrl = packagePaths + "/check_redeem_status.php";
@@ -541,7 +589,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var coupondetails = $.parseJSON(result);
           if (coupondetails.result == null) {
             if ($("#maketplace-type").val() == "bespoke") {
@@ -555,14 +604,16 @@
           } else {
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
     //BESPOKE
-    function checkRedeemStatus_bespoke() {
+    function checkRedeemStatus_bespoke()
+    {
       var data = { order_guid: orderId };
       var apiUrl = packagePaths + "/check_redeem_status.php";
       $.ajax({
@@ -570,7 +621,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var coupondetails = $.parseJSON(result);
           if (coupondetails.result == null) {
             if ($("#maketplace-type").val() == "bespoke") {
@@ -584,13 +636,15 @@
           } else {
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    function decrementCoupon() {
+    function decrementCoupon()
+    {
       var orderId = window.location.pathname.split("/").slice(-1)[0]; // get the invoice number here or from (invoice-id class);
       var data = { order_guid: orderId };
       var apiUrl = packagePaths + "/update_coupon_qty.php";
@@ -599,14 +653,16 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {},
-        error: function (jqXHR, status, err) {
+        success: function (result) { },
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    function decrementCouponBespoke() {
+    function decrementCouponBespoke()
+    {
       var data = { order_guid: orderId };
       var apiUrl = packagePaths + "/update_coupon_qty.php";
       $.ajax({
@@ -614,16 +670,19 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {},
-        error: function (jqXHR, status, err) {
+        success: function (result) { },
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
     //setting the discount value, total values - discount value
-    function updateOrders() {
+    function updateOrders()
+    {
       var orderguid = $("#orderGuids").val().split(",");
-      orderguid.forEach(function (item, index) {
+      orderguid.forEach(function (item, index)
+      {
         var data = {
           order_guid: item,
           discount_val: discountVal,
@@ -639,8 +698,9 @@
           method: "POST",
           contentType: "application/json",
           data: JSON.stringify(data),
-          success: function (result) {},
-          error: function (jqXHR, status, err) {
+          success: function (result) { },
+          error: function (jqXHR, status, err)
+          {
             toastr.error("Error!");
           },
         });
@@ -648,10 +708,12 @@
     }
     // orderGuids
     //setting the discount value, total values - discount value
-    function updateOrders_del2() {
+    function updateOrders_del2()
+    {
       var orderguid = $("#orderGuids").val().split(",");
       // console.log(couponvalue);
-      orderguid.forEach(function (item, index) {
+      orderguid.forEach(function (item, index)
+      {
         var data = {
           order_guid: item,
           discount_val: discountVal,
@@ -667,15 +729,17 @@
           method: "POST",
           contentType: "application/json",
           data: JSON.stringify(data),
-          success: function (result) {},
-          error: function (jqXHR, status, err) {
+          success: function (result) { },
+          error: function (jqXHR, status, err)
+          {
             toastr.error("Error!");
           },
         });
       });
     }
 
-    function validate_coupon_checkout() {
+    function validate_coupon_checkout()
+    {
       var data = { order_guid: orderguidcheckout };
       var apiUrl = packagePaths + "/validate_coupon.php";
       $.ajax({
@@ -683,7 +747,8 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {
+        success: function (result)
+        {
           var coupondetails = $.parseJSON(result);
           if (coupondetails.result.length == 0) {
             //do nothing
@@ -698,13 +763,15 @@
             $(".page").append(couponspan);
           }
         },
-        error: function (jqXHR, status, err) {
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    function removeDiscount() {
+    function removeDiscount()
+    {
       var data = { order_guid: $("#orderGuids").val() };
       var apiUrl = packagePaths + "/remove_discount.php";
       $.ajax({
@@ -712,14 +779,16 @@
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(data),
-        success: function (result) {},
-        error: function (jqXHR, status, err) {
+        success: function (result) { },
+        error: function (jqXHR, status, err)
+        {
           toastr.error("Error!");
         },
       });
     }
 
-    $(document).ready(function () {
+    $(document).ready(function ()
+    {
       const url = window.location.href.toLowerCase();
       if (url.indexOf("/user/order/ordersummary") >= 0) {
         //TODO: Validate if the user is a guest. if not, do not display the COUPON OPTIONS.
@@ -737,7 +806,8 @@
           }
         }
         if (document.body.className.includes("delievry-settings")) {
-          $(".sel_del_method").on("change", function () {
+          $(".sel_del_method").on("change", function ()
+          {
             if ($("#promocode").val() == "") {
             } else if ($("#promodiv").find("#promocode").length == 0) {
             } else {
@@ -806,7 +876,8 @@
       //NOTE: Page URL may vary. depending on the payment method you use. This one is for payment gateways other than cod.
       if (url.indexOf("/user/checkout/success") >= 0) {
         checkRedeemStatus();
-        waitForElement("#couponhidden", function () {
+        waitForElement("#couponhidden", function ()
+        {
           decrementCoupon();
         });
       }
@@ -814,12 +885,15 @@
       //BESPOKE
       //this url is for COD type of payment
       if (url.indexOf("/user/checkout/gateway-selected") >= 0) {
-        waitForElement(".invoice-id", function () {
+        waitForElement(".invoice-id", function ()
+        {
           orderId = $(".invoice-id").text();
           checkRedeemStatus_bespoke();
         });
-        waitForElement("#couponhidden", function () {
-          waitForElement(".invoice-id", function () {
+        waitForElement("#couponhidden", function ()
+        {
+          waitForElement(".invoice-id", function ()
+          {
             orderId = $(".invoice-id").text();
             decrementCouponBespoke();
           });
@@ -830,11 +904,13 @@
       //VALIDATE IF THE COUPON IS EXPIRED OR CONSUMES THE MAX AMOUNT
       //DECREMENT THE COUPON QTY ON EACH REDEEM.
       //
-      $("#applybutton").click(function () {
+      $("#applybutton").click(function ()
+      {
         $("#couponhidden").remove();
         promocode = $("#promocode").val().toUpperCase();
         getCouponDetails();
-        waitForElement("#couponhidden", function () {
+        waitForElement("#couponhidden", function ()
+        {
           if (isEnabled == 0) {
             returnError("Expired");
           } else if (couponqty == maxRedeem) {
@@ -849,11 +925,13 @@
         });
       });
       //SPACETIME
-      $("#applybutton1").click(function () {
+      $("#applybutton1").click(function ()
+      {
         $("#couponhidden").remove();
         promocode = $("#promocode").val().toUpperCase();
         getCouponDetails();
-        waitForElement("#couponhidden", function () {
+        waitForElement("#couponhidden", function ()
+        {
           if (isEnabled == 0) {
             returnError("Expired");
           } else if (couponqty == maxRedeem) {
@@ -867,12 +945,14 @@
         });
       });
 
-      $("#applybutton2").click(function () {
+      $("#applybutton2").click(function ()
+      {
         console.log("apply clicked");
         $("#couponhidden").remove();
         promocode = $("#promocode").val().toUpperCase();
         getCouponDetailsDel2();
-        waitForElement("#couponhidden", function () {
+        waitForElement("#couponhidden", function ()
+        {
           if (isEnabled == 0) {
             returnError("Expired");
           } else if (couponqty == maxRedeem) {
@@ -887,12 +967,13 @@
         });
       });
       //removing coupon info
-      $("body").on("click", "#remove", function () {
+      $("body").on("click", "#remove", function ()
+      {
         $("#coupon").remove();
         //Total without coupon discount
         $(".chkout-totla-amt").text(
           mpCurrencycode +
-            formatter.format(parseFloat(currentSubtotal1) + deliveryCharge)
+          formatter.format(parseFloat(currentSubtotal1) + deliveryCharge)
         );
         $(".total_area .total-cost").text(formatter.format(totalwithDelivery));
         removeDiscount();
