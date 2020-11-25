@@ -15,7 +15,8 @@
     var couponname, coupondiscount;
 //get coupon value to display in Admin transaction details page
 function getDiscountValue(){
-    var invoiceNo  = window.location.pathname.split("/").slice(-1)[0];
+    var invoiceNo = $('.transaction-detail .fields-group:contains("INVOICE ID") p').text();
+    console.log(invoiceNo);  // window.location.pathname.split("/").slice(-1)[0];
 	var data = { 'invoice_number': invoiceNo }; 
     var apiUrl = packagePath + '/get_discount.php';
     $.ajax({
@@ -23,7 +24,9 @@ function getDiscountValue(){
         method: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
-        success: function(result) {
+        success: function (result)
+        {
+            console.log(JSON.stringify(result))
             var discountDetails = $.parseJSON(result);
             if (discountDetails.result.length == 0) {
             }else{
