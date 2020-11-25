@@ -124,7 +124,7 @@
       //total - coupon discount
       $("#price_amt").text(couponvalue.toFixed(2));
       //Total
-      $('.review-order-container:contains("Total") .review-order-price').text(
+      $('.review-order-container:last .review-order-price').text(
         mpCurrencycode + formatter.format(totalwithDelivery)
       );
       updateOrders();
