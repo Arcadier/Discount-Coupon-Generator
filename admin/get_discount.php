@@ -15,7 +15,7 @@ $result = callAPI("GET", $userToken, $url, false);
 $userId = $result['ID'];
 //get the discount value
 $url =  $baseUrl . '/api/v2/admins/' . $userId .'/transactions/'. $invoice_number;
-echo json_encode(['result' => $url ]);
+// echo json_encode(['result' => $url ]);
 $result = callAPI("GET", $admin_token['access_token'], $url, false);
 //echo json_encode(['result' => $result['Orders'][0]['ID']]);
 $orderId = $result['Orders'][0]['ID'];

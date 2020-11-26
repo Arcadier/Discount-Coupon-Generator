@@ -26,7 +26,7 @@ function getDiscountValue(){
         data: JSON.stringify(data),
         success: function (result)
         {
-            console.log(JSON.stringify(result))
+            // console.log(JSON.stringify(result))
             var discountDetails = $.parseJSON(result);
             if (discountDetails.result.length == 0) {
             }else{
@@ -77,18 +77,28 @@ function discount_orderDetails(priceCal) {
             
         var promo = '<p class = "amount"> </p>';
         priceCal.append(promo);
-        var total =   parseFloat(coupondiscount) * t_subtotal / 100;    
+            var total = parseFloat(coupondiscount) * t_subtotal / 100;  
+            // console.log(total);    
         priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(total));
         $('.amount').prepend('<label id ="couponname"> </label>');
         $('.amount').children('label').text(couponname);     
 
-        var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee;
+            var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee
+            
+            // console.log(parseFloat(t_subtotal) - total);
+            // console.log(parseFloat(t_delivery) - t_adminfee);
+
+            Total = Total.toFixed(2)
+            //console.log(Total.toFixed(2));
         
         waitForElement('.details-col .description h1',function(){
             var parents = priceCal.parent();
             var totalLabel = parents.find('.description:contains("TOTAL ORDER PAYOUT") h1');
-            var test =  formatter.format(Total); 
+            var test = formatter.format(Total); 
+          //  console.log(test);
             totalLabel.text($('#currencyWithSymbol').val() + formatter.format(Total));
+
+           // console.log(formatter.format(Total));
     });
     })
 }
