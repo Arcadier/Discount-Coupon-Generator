@@ -26,7 +26,7 @@ function getDiscountValue(){
         data: JSON.stringify(data),
         success: function (result)
         {
-            // console.log(JSON.stringify(result))
+            console.log(JSON.stringify(result))
             var discountDetails = $.parseJSON(result);
             if (discountDetails.result.length == 0) {
             }else{
@@ -54,7 +54,11 @@ function waitForElement(elementPath, callBack){
 }
 const formatter = new Intl.NumberFormat('en-US', {
     minimumFractionDigits: 2
-  })
+})
+    
+    
+// if ($("#promodiv").find("#couponname").length == 0) {    
+    
 
 function discount_orderDetails(priceCal) {
         waitForElement('#couponhidden',function(){
@@ -79,9 +83,12 @@ function discount_orderDetails(priceCal) {
         priceCal.append(promo);
             var total = parseFloat(coupondiscount) * t_subtotal / 100;  
             // console.log(total);    
-        priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(total));
-        $('.amount').prepend('<label id ="couponname"> </label>');
-        $('.amount').children('label').text(couponname);     
+            priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(total));
+            
+            if ($(".amount", priceCal).find("#couponname").length == 0) {
+                $('.amount', priceCal).prepend('<label id ="couponname"> </label>');
+                $('.amount').children('label').text(couponname);
+            }
 
             var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee
             
