@@ -269,9 +269,9 @@
         $("#couponvalue").text(couponname);
         $("#coupon_ordetails").append(discount);
         $("#currencySym").text("- " + mpCurrencycode);
-        var disc = (coupondiscount * total1) / 100;
-        console.log("disc " + disc);
-        $("#price_amt").text(formatter.format(disc));
+        // var disc = (coupondiscount * total1) / 100;
+        // console.log("disc " + disc);
+        $("#price_amt").text(formatter.format(coupondiscount));
       });
     }
 
@@ -459,7 +459,7 @@
           if (discountDetails1.result.length == 0) {
           } else {
             couponname = discountDetails1.result[0].CouponCode;
-            coupondiscount = discountDetails1.result[0].DiscountPercentage;
+            coupondiscount = discountDetails1.result[0].DiscountValue;
             var couponspan =
               '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
             $(".seller-order-detail-page").append(couponspan);

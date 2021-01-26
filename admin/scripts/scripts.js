@@ -31,7 +31,7 @@ function getDiscountValue(){
             if (discountDetails.result.length == 0) {
             }else{
                 couponname = discountDetails.result[0].CouponCode;
-                coupondiscount = discountDetails.result[0].DiscountPercentage;  
+                coupondiscount = discountDetails.result[0].DiscountValue;  
                 var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
                 $('.page-transaction-details').append(couponspan);
             }
@@ -81,9 +81,9 @@ function discount_orderDetails(priceCal) {
             
         var promo = '<p class = "amount"> </p>';
         priceCal.append(promo);
-            var total = parseFloat(coupondiscount) * t_subtotal / 100;  
+          //  var total = parseFloat(coupondiscount) * t_subtotal / 100;  
             // console.log(total);    
-            priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(total));
+            priceCal.find('.amount').text('- ' + $('#currencyWithSymbol').val() + formatter.format(coupondiscount));
             
             if ($(".amount", priceCal).find("#couponname").length == 0) {
                 $('.amount', priceCal).prepend('<label id ="couponname"> </label>');
