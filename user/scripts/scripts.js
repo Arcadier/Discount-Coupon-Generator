@@ -446,6 +446,7 @@
       //   .text();
       invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
       invoiceNumberMerchant = invoiceNumberMerchant.trim();
+     
       var data = { invoice_number: invoiceNumberMerchant };
       var apiUrl = packagePaths + "/get_discount_merchant.php";
       $.ajax({
@@ -475,17 +476,20 @@
     //ORDER HISTORY ---  MERCHANT SPACETIME
     function getDiscountValueMerchant_spacetime()
     {
-      var invoiceNumberMerchant = $('.ordr-dtls-orderid:contains("Invoice id")')
+      // var invoiceNumberMerchant = $('.ordr-dtls-orderid:contains("Invoice id")')
 
-        .clone()
-        .children()
-        .remove()
-        .end()
-        .text();
-      invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
-      invoiceNumberMerchant = invoiceNumberMerchant.trim();
-      var data = { invoice_number: invoiceNumberMerchant };
-      var apiUrl = packagePaths + "/get_discount_merchant.php";
+      //   .clone()
+      //   .children()
+      //   .remove()
+      //   .end()
+      //   .text();
+      // invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
+      // invoiceNumberMerchant = invoiceNumberMerchant.trim();
+
+      var orderId = window.location.pathname.split("/").slice(-1)[0];
+      console.log(orderId);
+      var data = { orderguid: orderId };
+      var apiUrl = packagePaths + "/get_discount_merchant_sp.php";
       $.ajax({
         url: apiUrl,
         method: "POST",
@@ -494,6 +498,7 @@
         success: function (result)
         {
           var discountDetails1 = $.parseJSON(result);
+          console.log(discountDetails1);
           if (discountDetails1.result.length == 0) {
           } else {
             couponname = discountDetails1.result[0].CouponCode;
