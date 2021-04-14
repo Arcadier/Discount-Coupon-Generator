@@ -22,7 +22,6 @@ error_log('admin ' . json_encode($result));
 $admin_id = $result['ID'];
 
 
-
 //get the discount value
 $url =  $baseUrl . '/api/v2/admins/' . $admin_id .'/transactions/'. $invoice_number;
 $result = callAPI("GET", $admin_token['access_token'], $url, false);

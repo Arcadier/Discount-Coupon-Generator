@@ -14,9 +14,10 @@
     timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
     var couponname, coupondiscount;
 //get coupon value to display in Admin transaction details page
-function getDiscountValue(){
-    var invoiceNo = $('.transaction-detail .fields-group:contains("INVOICE ID") p').text();
-    console.log(invoiceNo);  // window.location.pathname.split("/").slice(-1)[0];
+function getDiscountValue(priceCal){
+    var invoiceNo = window.location.pathname.split("/").slice(-1)[0];
+    //$('.transaction-detail .fields-group:contains("INVOICE ID") p').text();
+    console.log(invoiceNo);  // 
 	var data = { 'invoice_number': invoiceNo }; 
     var apiUrl = packagePath + '/get_discount.php';
     $.ajax({
@@ -28,12 +29,19 @@ function getDiscountValue(){
         {
             console.log(JSON.stringify(result))
             var discountDetails = $.parseJSON(result);
-            if (discountDetails.result.length == 0) {
-            }else{
+            // if (Object.keys(discountDetails.result).length === 0) {
+                if (Object.keys(discountDetails.result).length === 0) {
+                
+                console.log('wth')
+                } else {
+                
+                console.log('else')
                 couponname = discountDetails.result[0].CouponCode;
                 coupondiscount = discountDetails.result[0].DiscountValue;  
-                var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
-                $('.page-transaction-details').append(couponspan);
+                //var couponspan = '<input type="hidden" class="coupon-msg" id="couponhidden"></span>';
+               //     $('.page-transaction-details').append(couponspan);
+               discount_orderDetails(priceCal)
+
             }
         },
         error: function(jqXHR, status, err) {
@@ -57,11 +65,8 @@ const formatter = new Intl.NumberFormat('en-US', {
 })
     
     
-// if ($("#promodiv").find("#couponname").length == 0) {    
-    
-
 function discount_orderDetails(priceCal) {
-        waitForElement('#couponhidden',function(){
+       // waitForElement('#couponhidden',function(){
         //1. get the current order sub total
             var subtotal = priceCal.find('p:contains("Order Subtotal")').text();
             var t_subtotal =  subtotal.replace(/[^\d.-]/g, '');
@@ -90,7 +95,7 @@ function discount_orderDetails(priceCal) {
                 $('.amount').children('label').text(couponname);
             }
 
-            var Total = parseFloat(t_subtotal) - total + parseFloat(t_delivery) - t_adminfee
+            var Total = parseFloat(t_subtotal) + parseFloat(t_delivery) - t_adminfee
             
             // console.log(parseFloat(t_subtotal) - total);
             // console.log(parseFloat(t_delivery) - t_adminfee);
@@ -107,7 +112,7 @@ function discount_orderDetails(priceCal) {
 
            // console.log(formatter.format(Total));
     });
-    })
+   // })
 }
     $(document).ready(function() {
             const url = window.location.href.toLowerCase();
@@ -117,8 +122,8 @@ function discount_orderDetails(priceCal) {
             
                 $(".transaction-detail .panel-order .price-cal").each(function(){
                     var $this =  $(this);
-                    getDiscountValue();
-                    discount_orderDetails($this);
+                    getDiscountValue($this);
+                    // discount_orderDetails($this);
                 
                 });
             }

@@ -435,7 +435,12 @@
     function getDiscountValueMerchant()
     {
 
-      var invoiceNumberMerchant = $('.ordr-dtls-invoiceid .innvoice-id').clone().children().remove().end().text();
+      var invoiceNumberMerchant = window.location.pathname.split("/").slice(-1)[0];
+      console.log(invoiceNumberMerchant);
+
+
+      //$('.ordr-dtls-invoiceid .innvoice-id').clone().children().remove().end().text();
+      //var orderId = window.location.pathname.split("/").slice(-1)[0];
       // var invoiceNumberMerchant = $(
       //   '.ordr-dtls-invoiceid:contains("INVOICE ID")'
       // )
@@ -444,8 +449,8 @@
       //   .remove()
       //   .end()
       //   .text();
-      invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
-      invoiceNumberMerchant = invoiceNumberMerchant.trim();
+      // invoiceNumberMerchant = invoiceNumberMerchant.replace(/[\. ,:-]+/g, "");
+      // invoiceNumberMerchant = invoiceNumberMerchant.trim();
      
       var data = { invoice_number: invoiceNumberMerchant };
       var apiUrl = packagePaths + "/get_discount_merchant.php";
