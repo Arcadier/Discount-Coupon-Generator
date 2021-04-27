@@ -13,9 +13,10 @@
     var timezone_offset_minutes = new Date().getTimezoneOffset();
     timezone_offset_minutes = timezone_offset_minutes == 0 ? 0 : -timezone_offset_minutes;
     var couponname, coupondiscount;
+    const url = window.location.href.toLowerCase();
 //get coupon value to display in Admin transaction details page
-function getDiscountValue(priceCal){
-    var invoiceNo = window.location.pathname.split("/").slice(-1)[0];
+function getDiscountValue(priceCal,invoice){
+    var invoiceNo = invoice; //window.location.pathname.split("/").slice(-1)[0];
     //$('.transaction-detail .fields-group:contains("INVOICE ID") p').text();
     console.log(invoiceNo);  // 
 	var data = { 'invoice_number': invoiceNo }; 
@@ -115,17 +116,36 @@ function discount_orderDetails(priceCal) {
    // })
 }
     $(document).ready(function() {
-            const url = window.location.href.toLowerCase();
+           // const url = window.location.href.toLowerCase();
         
             //admin transaction page loads
-            if(url.indexOf('/admin/transactions/details') >= 0) {
+       
+        
+
+        if (url.indexOf("&isfailedtransaction=true") >= 0) {
+            var new_invoice = pathname.split("=")[1];
+            var invoiceNumber =  new_invoice.split("&").shift();
+            console.log(invoiceNumber);
+            $(".transaction-detail .panel-order .price-cal").each(function(){
+                var $this =  $(this);
+                getDiscountValue($this, invoiceNumber);
+                // discount_orderDetails($this);
             
-                $(".transaction-detail .panel-order .price-cal").each(function(){
-                    var $this =  $(this);
-                    getDiscountValue($this);
-                    // discount_orderDetails($this);
+            });
+
+        } else {
+            if (url.indexOf('/admin/transactions/details') >= 0) {
+                var invoiceNo = window.location.pathname.split("/").slice(-1)[0];
                 
-                });
+                    $(".transaction-detail .panel-order .price-cal").each(function(){
+                        var $this =  $(this);
+                        getDiscountValue($this, invoiceNo);
+                        // discount_orderDetails($this);
+                    
+                    });
             }
+        }
+
+
     });
 })();
