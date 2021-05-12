@@ -41,6 +41,9 @@ $packageCustomFields = callAPI("GET", null, $url, false);
 $campaign_details = array('CampaignName' => $campaign_name, 'LastUpdated' => $dates);
 $url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Campaign/rows';
 $result =  callAPI("POST",$admin_token['access_token'], $url, $campaign_details);
+
+
+
 //2. Get the generated campaign ID 
 $campaign_id =  $result['Id'];
 $coupon_details = array('CouponCode' => $coupon_code, 'isLimited' => $isLimited, 'isEnabled' => $isEnabled, 'MaxRedeem' => $max_redeem,  'Quantity'=> '0','DiscountValue' => $discount_value,'CampaignId'=> $campaign_id);

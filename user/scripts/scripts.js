@@ -256,6 +256,13 @@
           '<div class="ordr-dtls-trans-line" id="coupon_ordetails"><span id="couponvalue"></span></div>';
         $(".ordr-dtls-trans-info").append(promo);
         var total = $(".ordr-dtls-trans-line:first").text();
+
+        var grandTotal = $('.ordr-dtls-trans-info .ordr-dtls-buyer-infoind .priceAmount').text();
+        grandTotal = grandTotal.replace(/[^\d.-]/g, "");
+
+        grandTotalwithCoupon = grandTotal - coupondiscount;
+
+
         console.log(total);
         total1 = total.replace(/[^\d.-]/g, "");
         console.log(total1);
@@ -272,6 +279,8 @@
         // var disc = (coupondiscount * total1) / 100;
         // console.log("disc " + disc);
         $("#price_amt").text(formatter.format(coupondiscount));
+        //grand total
+        $('.ordr-dtls-trans-info .ordr-dtls-buyer-infoind .priceAmount').text(formatter.format(grandTotalwithCoupon));
       });
     }
 
@@ -330,6 +339,13 @@
         total1 = total.replace(/[^\d.-]/g, "");
         console.log(total1);
 
+        var grandTotal = $('.ordr-dtls-trans-info .ordr-dtls-buyer-infoind .priceAmount').text();
+        grandTotal = grandTotal.replace(/[^\d.-]/g, "");
+
+        grandTotalwithCoupon = grandTotal - coupondiscount;
+
+
+
         $("#coupon_ordetails").css("display", "inline");
         var discount =
           '<div class="coupon-con" id="discount"><span> <span id="currencySym"></span><span id="price_amt"></span></span></div>';
@@ -344,6 +360,8 @@
         $("#price_amt").text(formatter.format(coupondiscount));
         $("#currencySym").css("width", "auto");
         $("#price_amt").css("width", "auto");
+        //grand total
+        $('.ordr-dtls-trans-info .ordr-dtls-buyer-infoind .priceAmount').text(formatter.format(grandTotalwithCoupon));
       });
     }
 
@@ -385,6 +403,8 @@
         success: function (result)
         {
           var discountDetails = $.parseJSON(result);
+          console.log(`discount value ${discountDetails}`);
+
           if (discountDetails.result.length == 0) {
           } else {
             couponname = discountDetails.result[0].CouponCode;
