@@ -5,7 +5,7 @@ function getCampaignDetails(){
 $baseUrl = getMarketplaceBaseUrl();
 $admin_token = getAdminToken();
 $customFieldPrefix = getCustomFieldPrefix();
-$url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Campaign';
+$url =  $baseUrl . '/api/v2/plugins/'. getPackageID() .'/custom-tables/Campaign?pageSize=500&sort=-CreatedDateTime';
 $couponDetails =  callAPI("GET",$admin_token['access_token'], $url, false);
 return $couponDetails;
 }

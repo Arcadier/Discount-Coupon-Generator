@@ -39,7 +39,7 @@
                     </div>
                     <div class="panel-box ">
                         <div class="blsl-list-tblsec1">
-                            <table id ="campaigntable" class="sortable">
+                            <table id ="campaigntable">
                                 <thead>
                                     <tr>
                                         <th>Campaign Name</th>
@@ -284,13 +284,13 @@ $(document).ready(function() {
         $('#campaigntable').DataTable(
         {
         // "paging":   false,
-        "order": [[ 1, "desc" ]],
+        // "order": [[ 1, "desc" ]],
         "lengthMenu": [[20], [20]],
-        // "ordering": false,
+        "ordering": false,
         "info":     false,
         "searching" :false,
-        "pagingType": "first_last_numbers",
-        "columnDefs": [{ orderable: false, targets: [5] }]
+        "pagingType": "first_last_numbers"
+        // "columnDefs": [{ orderable: false, targets: [5] }]
         }
     );
 
